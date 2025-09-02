@@ -4,10 +4,10 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "web:build": "cd apps/web && next build",
-    "web:dev": "cd apps/web && next dev --turbopack --port 3000",
-    "api:build": "cd apps/api && nest build",
-    "api:dev": "cd apps/api && nest start --watch",
+    "web:build": "cd apps/web && turbo run build --filter=web",
+    "web:dev": "cd apps/web && turbo run dev --filter=web",
+    "api:build": "cd apps/api && turbo run build --filter=api",
+    "api:dev": "cd apps/api && turbo run dev --filter=api",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
