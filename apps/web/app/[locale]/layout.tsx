@@ -30,7 +30,6 @@ export default async function LocaleLayer({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  console.log(locale);
 
   const messages = await getMessages({ locale });
   return (

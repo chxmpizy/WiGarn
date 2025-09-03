@@ -30,7 +30,7 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`flex h-18 w-full items-center justify-between px-5 py-2 duration-300 ${isScrolled ? 'fixed bg-white text-[#154D71]' : 'absolute bg-[#154D71] text-white'}`}
+      className={`z-99 flex h-18 w-full items-center justify-between px-5 py-2 duration-300 ${isScrolled ? 'fixed bg-white text-[#154D71]' : 'absolute bg-[#154D71] text-white'}`}
     >
       <h1 className="text-2xl font-bold">RanAhLite</h1>
       <nav className="flex items-center gap-8 font-semibold">
@@ -100,7 +100,9 @@ const Navbar = () => {
             <span className="top-0 right-0 px-1.5 text-xs text-white">3</span>
           </div>
         </div>
-        <div className="flex gap-3 text-white">
+        <div
+          className={`flex gap-3 ${isScrolled ? 'text-[#154D71]' : 'text-white'} `}
+        >
           <Link href="/th">TH</Link>|<Link href="/en">EN</Link>
         </div>
         <div

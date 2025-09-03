@@ -3,5 +3,17 @@
     "home": "Home",
     "store": "Store",
     "contact": "Contact"
+  },
+  "Hero": {},
+  "Features": {
+    "title": "Features",
+    "search": "Search All Stores",
+    "search_desc": "you can search all Scraps Stores in Thai even large store, small store , New parts Store or Used parts Store.",
+    "store": "Build your store",
+    "store_desc": "You can create your own store without physical store. Create a personalized store that your needs.",
+    "delivery": "Pickup | Delivery",
+    "delivery_desc": " you can choose to pick up directly from store with yourself or have delivered to your doorstep.",
+    "chat": "Chat with owner",
+    "chat_desc": "you can chat with the store owner to ask questions or get more information about the products."
   }
 }
