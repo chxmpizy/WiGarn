@@ -1,36 +1,36 @@
-"use client";
-import React from "react";
-import { Button } from "@ui/button";
-import { Avatar, AvatarFallback } from "@ui/avatar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import { Input } from "@ui/input";
-import { motion } from "framer-motion";
+'use client';
+import React from 'react';
+import { Avatar, AvatarFallback } from '@ui/avatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import { Input } from '@ui/input';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   return (
-    <div className="w-full h-18 bg-[#154D71] flex justify-between items-center px-5 py-2">
+    <div className="absolute flex h-18 w-full items-center justify-between bg-[#154D71] px-5 py-2">
       <h1 className="text-2xl font-bold">RanAhLite</h1>
-      <nav className="flex gap-8 items-center font-semibold">
+      <nav className="flex items-center gap-8 font-semibold">
         <motion.div
-          initial={{ backgroundColor: "rgba(255, 255, 255, 0)" }}
+          initial={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
           whileHover={{
-            backgroundColor: "rgba(255, 255, 255, 0.2)",
-            borderRadius: "8px",
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
           }}
           transition={{ duration: 0.3 }}
-          className="text-xl cursor-pointer"
+          className="cursor-pointer text-xl"
         >
           <Link href="#" className="px-2 py-2">
             Home
           </Link>
         </motion.div>
         <motion.div
-          initial={{ backgroundColor: "rgba(255, 255, 255, 0)" }}
+          initial={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
           whileHover={{
-            backgroundColor: "rgba(255, 255, 255, 0.2)",
-            borderRadius: "8px",
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
           }}
           transition={{ duration: 0.3 }}
           className="text-xl"
@@ -40,10 +40,10 @@ const Navbar = () => {
           </Link>
         </motion.div>
         <motion.div
-          initial={{ backgroundColor: "rgba(255, 255, 255, 0)" }}
+          initial={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
           whileHover={{
-            backgroundColor: "rgba(255, 255, 255, 0.2)",
-            borderRadius: "8px",
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderRadius: '8px',
           }}
           transition={{ duration: 0.3 }}
           className="text-xl"
@@ -52,22 +52,36 @@ const Navbar = () => {
             Contact
           </Link>
         </motion.div>
-        <div className="text-medium flex justify-center items-center border-2 rounded-2xl px-2 py-1 border-[#FFFFFF]">
-          <Input className="outline-none" placeholder="Search..." />
+        <div className="text-medium flex items-center justify-center rounded-2xl border-2 border-[#FFFFFF] px-2 py-1 font-medium">
+          <Input
+            className="w-30 border-none outline-none"
+            placeholder="Search..."
+          />
           <FontAwesomeIcon
             onClick={() => {
-              console.log("search");
+              console.log('search');
             }}
-            className="w-5 h-5 cursor-pointer text-[#FFFFFF] px-1"
+            className="w-11 cursor-pointer rounded-2xl px-1 py-1.5 text-[#FFFFFF] hover:bg-white hover:text-[#154D71]"
             icon={faSearch}
           />
         </div>
       </nav>
-
-      <div className="bg-[#FFFFFF] text-[#154D71] w-10 h-10 text-center rounded-full items-center flex justify-center">
-        <Avatar>
-          <AvatarFallback>AR</AvatarFallback>
-        </Avatar>
+      <div className="flex items-center gap-11">
+        <div className="relative">
+          <FontAwesomeIcon
+            width={30}
+            className="cursor-pointer"
+            icon={faCartShopping}
+          />
+          <div className="absolute bottom-3.5 left-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-400">
+            <span className="top-0 right-0 px-1.5 text-xs text-white">3</span>
+          </div>
+        </div>
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFFFFF] text-center font-bold text-[#154D71]">
+          <Avatar>
+            <AvatarFallback>AR</AvatarFallback>
+          </Avatar>
+        </div>
       </div>
     </div>
   );
