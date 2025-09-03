@@ -19,7 +19,7 @@ const FeatureSection = () => {
             <FontAwesomeIcon icon={faSearch} className="text-[#4CAF50]" />
           </div>
           <div className="my-5 flex flex-col items-center justify-center gap-3 px-5 text-center">
-            <h1 className="text-lg">{ft('search')}</h1>
+            <h1 className="text-lg font-extrabold">{ft('search')}</h1>
             <p className="text-center text-sm">{ft('search_desc')}</p>
           </div>
         </div>
@@ -28,7 +28,7 @@ const FeatureSection = () => {
             <FontAwesomeIcon icon={faShop} className="text-[#FFCC22]" />
           </div>
           <div className="my-5 flex flex-col items-center justify-center gap-3 px-5 text-center">
-            <h1 className="text-lg">{ft('store')}</h1>
+            <h1 className="text-lg font-extrabold">{ft('store')}</h1>
             <p className="text-center text-sm">{ft('store_desc')}</p>
           </div>
         </div>
@@ -37,7 +37,7 @@ const FeatureSection = () => {
             <FontAwesomeIcon icon={faTruck} className="text-[#E37400]" />
           </div>
           <div className="my-5 flex flex-col items-center justify-center gap-3 px-5 text-center">
-            <h1 className="text-lg">{ft('delivery')}</h1>
+            <h1 className="text-lg font-extrabold">{ft('delivery')}</h1>
             <p className="text-center text-sm">{ft('delivery_desc')}</p>
           </div>
         </div>
@@ -46,7 +46,7 @@ const FeatureSection = () => {
             <FontAwesomeIcon icon={faCommentDots} className="text-[#D32D27]" />
           </div>
           <div className="my-5 flex flex-col items-center justify-center gap-3 px-5 text-center">
-            <h1 className="text-lg">{ft('chat')}</h1>
+            <h1 className="text-lg font-extrabold">{ft('chat')}</h1>
             <p className="text-center text-sm">{ft('chat_desc')}</p>
           </div>
         </div>

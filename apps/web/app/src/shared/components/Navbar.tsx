@@ -81,9 +81,6 @@ const Navbar = () => {
             placeholder={`${nbPath === 'en' ? 'Search' : 'ค้นหา'}`}
           />
           <FontAwesomeIcon
-            // onClick={() => {
-            //   console.log(`${nbPath === 'en' ? 'Search' : 'ค้นหา'}`);
-            // }}
             className={`w-11 cursor-pointer rounded-2xl px-1 py-1.5 duration-300 ${isScrolled ? 'text-[#154D71] hover:bg-[#154D71] hover:text-[#FFFFFF]' : 'text-[#FFFFFF] hover:bg-white hover:text-[#154D71]'} h`}
             icon={faSearch}
           />
@@ -101,9 +98,37 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className={`flex gap-3 ${isScrolled ? 'text-[#154D71]' : 'text-white'} `}
+          className={`flex gap-2 ${isScrolled ? 'text-[#154D71]' : 'text-white'} `}
         >
-          <Link href="/th">TH</Link>|<Link href="/en">EN</Link>
+          <Link
+            href="/th"
+            className={`rounded-full px-1.5 ${
+              nbPath === 'th'
+                ? isScrolled
+                  ? `bg-[#154D71] text-white`
+                  : !isScrolled
+                    ? 'bg-white text-[#154D71]'
+                    : ''
+                : ''
+            }`}
+          >
+            TH
+          </Link>
+          |
+          <Link
+            href="/en"
+            className={`rounded-full px-1.5 ${
+              nbPath === 'en'
+                ? isScrolled
+                  ? `bg-[#154D71] text-white`
+                  : !isScrolled
+                    ? 'bg-white text-[#154D71]'
+                    : ''
+                : ''
+            }`}
+          >
+            EN
+          </Link>
         </div>
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-full duration-300 ${isScrolled ? 'bg-[#154D71] text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#154D71]'} text-center font-bold`}
