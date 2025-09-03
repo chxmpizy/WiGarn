@@ -7,9 +7,12 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Input } from '@ui/input';
 import { motion } from 'framer-motion';
+import { useLocale, useTranslations } from 'next-intl';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const nbPath = useLocale();
+  const nb = useTranslations('Navbar');
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -41,7 +44,7 @@ const Navbar = () => {
           className="cursor-pointer text-xl"
         >
           <Link href="#" className="px-2 py-2">
-            Home
+            {nb('home')}
           </Link>
         </motion.div>
         <motion.div
@@ -54,7 +57,7 @@ const Navbar = () => {
           className="text-xl"
         >
           <Link href="#" className="px-2 py-1">
-            Store
+            {nb('store')}
           </Link>
         </motion.div>
         <motion.div
@@ -67,7 +70,7 @@ const Navbar = () => {
           className="text-xl"
         >
           <Link href="#" className="px-2 py-1">
-            Contact
+            {nb('contact')}
           </Link>
         </motion.div>
         <div
@@ -75,12 +78,12 @@ const Navbar = () => {
         >
           <Input
             className={`w-30 border-none duration-300 outline-none ${isScrolled ? 'text-[#154D71] placeholder:text-[#154D71]' : 'text-[#FFFFFF] placeholder:text-[#FFFFFF]'}`}
-            placeholder="Search..."
+            placeholder={`${nbPath === 'en' ? 'Search' : 'ค้นหา'}`}
           />
           <FontAwesomeIcon
-            onClick={() => {
-              console.log('search');
-            }}
+            // onClick={() => {
+            //   console.log(`${nbPath === 'en' ? 'Search' : 'ค้นหา'}`);
+            // }}
             className={`w-11 cursor-pointer rounded-2xl px-1 py-1.5 duration-300 ${isScrolled ? 'text-[#154D71] hover:bg-[#154D71] hover:text-[#FFFFFF]' : 'text-[#FFFFFF] hover:bg-white hover:text-[#154D71]'} h`}
             icon={faSearch}
           />
@@ -96,6 +99,9 @@ const Navbar = () => {
           <div className="absolute bottom-3.5 left-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-400">
             <span className="top-0 right-0 px-1.5 text-xs text-white">3</span>
           </div>
+        </div>
+        <div className="flex gap-3 text-white">
+          <Link href="/th">TH</Link>|<Link href="/en">EN</Link>
         </div>
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-full duration-300 ${isScrolled ? 'bg-[#154D71] text-[#FFFFFF]' : 'bg-[#FFFFFF] text-[#154D71]'} text-center font-bold`}

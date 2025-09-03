@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@ui/*" : ["../../packages/ui/src/*"],
+      "@ui/*": ["../../packages/ui/src/*"],
       "@/*": ["./*"],
       "@src/*": ["app/src/*"]
     },
@@ -20,7 +20,5 @@
     "next.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
