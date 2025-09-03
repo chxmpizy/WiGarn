@@ -44,9 +44,13 @@ const Hero = () => {
               .fill(0)
               .map((_, idx) => (
                 <CarouselItem key={idx}>
-                  <div className="w-130 px-2">
+                  <div
+                    className={`w-130 ${idx === 0 ? 'pl-0' : 'px-2'} ${idx === count - 1 ? 'pr-0' : 'px-2'}`}
+                  >
                     <Card>
-                      <CardContent className="h-70 w-full rounded-xl bg-[#1C6EA4]">
+                      <CardContent
+                        className={`h-70 w-full rounded-xl bg-[#1C6EA4]`}
+                      >
                         Image {idx + 1}
                       </CardContent>
                     </Card>
