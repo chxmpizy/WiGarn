@@ -13,3 +13,179 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+enum Role  {
+  USER 
+  SELLER
+  ADMIN
+}
+enum StoreSize  {
+  SMALL
+  MEDIUM
+  LARGE
+}
+enum Status {
+  PENDING
+  PAID
+  SHIPPED
+  COMPLETED
+  CANCELLED
+}
+enum PaymentStatus {
+  PENDING     
+  COMPLETED   
+  FAILED      
+  REFUNDED    
+}
+enum GetItemChannel {
+  SELF_PICK
+  DELIVERY
+}
+enum PaymentMethod {
+  BANKING
+  PROMPTPAY
+}
+enum MessageType {
+  TEXT
+  IMAGE
+  FILE
+  VIDEO
+}
+model users {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String 
+  house_number String
+  s_road String?
+  sub_district String
+  district String
+  province String
+  phoneNumber String
+  b_date DateTime 
+  role Role
+  postcode String
+   createdAt       DateTime   @default(now())   // เวลาที่สร้าง
+  updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
+  Stores stores[]
+  Cart Cart[]
+  Order Orders[]
+  Payment Payment[]
+  ShippingAddress ShippingAddress[]
+  Message Messages[]
+}
+
+model stores {
+  id Int @id @default(autoincrement())
+  s_name String
+  users users @relation(fields: [user_id] , references: [id])
+  user_id String
+  s_size StoreSize
+  estimated_date DateTime
+  s_imgUrl String[]
+  s_house_number String
+  s_road String?
+  s_sub_district String //optional
+  s_district String //optional
+  s_province String //optional
+  createdAt       DateTime   @default(now())   // เวลาที่สร้าง
+  updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
+  s_status Boolean @default(true)
+  Scrap_Items Scrap_Items[]
+}
+
+model Scrap_Items {
+  id Int @id @default(autoincrement())
+  item_name String
+  item_desc String?
+  price Int
+  rating Float
+  stock       Int       @default(0)
+  imgUrl String?
+  stores stores @relation(fields: [store_id] , references: [id])
+  store_id Int
+  order_item Order_items[]
+  cart_item Cart_items[]
+  createdAt       DateTime   @default(now())   // เวลาที่สร้าง
+  updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
+}
+model Cart {
+  id Int @id @default(autoincrement())
+  user users @relation(fields: [user_id] , references: [id])
+  user_id String
+  createdAt DateTime @default(now())
+
+  cartItems Cart_items[]
+  order Orders[]
+}
+model ShippingAddress {
+  id Int @id @default(autoincrement())
+  user users @relation(fields: [user_id], references: [id])
+  user_id String
+  house_number String
+  road String?
+  sub_district String
+  district String
+  province String
+  postcode String
+  createdAt DateTime @default(now())
+}
+model Orders {
+  id Int @id @default(autoincrement())
+  cart Cart @relation(fields: [cart_id] , references: [id])
+  cart_id Int
+  user users @relation(fields: [user_id] , references: [id])
+  user_id String
+  status      Status   @default(PENDING)
+  channel GetItemChannel
+  payment Payment[] 
+  total_price Int
+  order_item Order_items[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+model Order_items {
+  id        Int     @id @default(autoincrement())
+  order_id  Int
+  item_id   Int
+  quantity  Int
+  price     Int     // snapshot ของราคาตอนสั่ง
+  orders    Orders  @relation(fields: [order_id], references: [id])
+  items     Scrap_Items   @relation(fields: [item_id], references: [id])
+}
+model Cart_items {
+  id       Int   @id @default(autoincrement())
+  cart_id  Int
+  item_id  Int
+  quantity Int   @default(1)
+  cart     Cart  @relation(fields: [cart_id], references: [id])
+  items    Scrap_Items @relation(fields: [item_id], references: [id])
+}
+model Payment {
+  id Int @id @default(autoincrement())
+  user users @relation(fields: [user_id] , references: [id])
+  user_id String
+  order Orders @relation(fields: [order_id], references: [id])
+  order_id Int
+  status PaymentStatus 
+  paymentMethod PaymentMethod
+  amount Int
+  transactionId String?  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Conversations {
+  id Int @id @default(autoincrement()) 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Message Messages[]
+}
+model Messages {
+  id Int @id @default(autoincrement())
+  conversation Conversations @relation(fields: [conver_id] , references: [id])
+  conver_id Int
+  sender users @relation(fields: [sender_id] , references: [id])
+  sender_id String
+  content String[]
+  messageType MessageType
+  mediaUrl String?
+}
