@@ -13,7 +13,7 @@ const FeatureSection = () => {
       <div className="mb-10">
         <h1>{ft('title')}</h1>
       </div>
-      <div className="grid grid-cols-4 gap-15">
+      <div className="grid grid-cols-4 gap-25">
         <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 shadow-2xl ring-2 ring-gray-200">
           <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#96BF48]/30">
             <FontAwesomeIcon icon={faSearch} className="text-[#4CAF50]" />

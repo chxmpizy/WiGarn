@@ -4,7 +4,12 @@
     "store": "Store",
     "contact": "Contact"
   },
-  "Hero": {},
+  "Hero": {
+    "title": "Every Scrap Store. Just One Website.",
+    "hero_desc": "Create your own spare parts store online , no physical shop needed.",
+    "button1": "Shop Now",
+    "button2": "Build your store"
+  },
   "Features": {
     "title": "Features",
     "search": "Search All Stores",

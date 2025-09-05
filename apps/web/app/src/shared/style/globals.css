@@ -1,7 +1,17 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+:root {
+  --color-primary: oklch(44.3% 0.11 240.79);
+  --color-primary_light: oklch(50% 0.134 242.749);
+  --color-secondary: #ffffff;
+}
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-primary_light: var(--color-primary_light);
+}
 html {
-  color: #ffffff;
+  color: var(--font-color);
   border: none;
 }

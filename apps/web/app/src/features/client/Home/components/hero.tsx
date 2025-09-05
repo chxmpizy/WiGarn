@@ -7,10 +7,13 @@ import {
   CarouselApi,
 } from '@ui/carousel';
 import { Card, CardContent } from '@ui/card';
+import { Button } from '@ui/button';
+import { useTranslations } from 'next-intl';
 
 const Hero = () => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  const hr = useTranslations('Hero');
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
@@ -28,14 +31,20 @@ const Hero = () => {
 
   return (
     <div className="bg-background flex h-screen items-center justify-around overflow-hidden text-black">
-      <div className="px-2 text-2xl leading-12 font-bold">
+      <div className="flex flex-col items-center justify-around px-2 text-2xl leading-12 font-bold">
         <h1>
-          <span className="text-4xl text-[#154D71]">
-            Every Scrap Store. Just One Website.
-          </span>
+          <span className="text-primary text-4xl">{hr('title')}</span>
           <br />
-          Create your own spare parts store online — no physical shop needed.
+          {hr('hero_desc')}
         </h1>
+        <div className="mt-10 flex w-full items-center justify-center gap-5">
+          <Button className="bg-primary text-secondary hover:bg-primary_light cursor-pointer rounded-xl px-5 py-3 text-lg duration-300">
+            {hr('button1')}
+          </Button>
+          <Button className="bg-secondary text-primary border-primary cursor-pointer rounded-xl border-2 px-5 py-3 text-lg duration-300 hover:bg-gray-100">
+            {hr('button2')}
+          </Button>
+        </div>
       </div>
       <div>
         <Carousel className="w-full max-w-lg" setApi={setApi}>
