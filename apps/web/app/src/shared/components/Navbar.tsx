@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Input } from '@ui/input';
 import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -30,10 +31,17 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`z-99 flex h-18 w-full items-center justify-between px-5 py-2 duration-300 ${isScrolled ? 'bg-primary text-secondary fixed' : 'text-primary bg-secondary absolute'}`}
+      className={`z-99 flex h-18 w-full items-center justify-between px-12 py-2 duration-300 ${isScrolled ? 'bg-primary text-secondary fixed' : 'text-primary bg-secondary absolute'}`}
     >
-      <h1 className="text-2xl font-bold">RanAhLite</h1>
-      <nav className="flex items-center gap-8 font-semibold">
+      <h1 className="flex w-40 items-center justify-center text-2xl font-bold">
+        <Image
+          src={isScrolled ? '/RanAhRai 1.svg' : '/RanAhRai.svg'}
+          width={90}
+          height={90}
+          alt="RanAhRai Logo"
+        />
+      </h1>
+      <nav className="flex items-center gap-15 font-semibold">
         <motion.div
           initial={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
           whileHover={{

@@ -7,12 +7,20 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <div className="bg-primary text-secondary flex items-center justify-around py-10">
+    <div className="bg-primary text-secondary flex items-center justify-around py-5">
       <div className="flex flex-col">
-        <h1 className="text-3xl">RanAhLite</h1>
+        <h1 className="text-4xl font-extrabold">
+          <Image
+            src={'/RanAhRai 1.svg'}
+            width={120}
+            height={120}
+            alt="RanAhRai Logo"
+          />
+        </h1>
       </div>
       <div className="flex flex-col gap-4">
         <div>
