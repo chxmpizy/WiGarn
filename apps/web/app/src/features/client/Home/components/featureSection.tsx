@@ -9,12 +9,12 @@ import { useTranslations } from 'next-intl';
 const FeatureSection = () => {
   const ft = useTranslations('Features');
   return (
-    <div className="flex flex-col items-center justify-center py-2 text-4xl font-semibold text-[#154D71]">
+    <div className="mb-10 flex flex-col items-center justify-center py-2 text-4xl font-semibold text-[#154D71]">
       <div className="mb-10">
-        <h1>{ft('title')}</h1>
+        <h1 className="text-center text-5xl font-extrabold">{ft('title')}</h1>
       </div>
       <div className="grid grid-cols-4 gap-25">
-        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 shadow-2xl ring-2 ring-gray-200">
+        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 ring-2 shadow-xl ring-gray-200">
           <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#96BF48]/30">
             <FontAwesomeIcon icon={faSearch} className="text-[#4CAF50]" />
           </div>
@@ -23,7 +23,7 @@ const FeatureSection = () => {
             <p className="text-center text-sm">{ft('search_desc')}</p>
           </div>
         </div>
-        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 shadow-2xl ring-2 ring-gray-200">
+        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 ring-2 shadow-xl ring-gray-200">
           <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#FFE01B]/40">
             <FontAwesomeIcon icon={faShop} className="text-[#FFCC22]" />
           </div>
@@ -32,7 +32,7 @@ const FeatureSection = () => {
             <p className="text-center text-sm">{ft('store_desc')}</p>
           </div>
         </div>
-        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 shadow-2xl ring-2 ring-gray-200">
+        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 ring-2 shadow-xl ring-gray-200">
           <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#FF9800]/30">
             <FontAwesomeIcon icon={faTruck} className="text-[#E37400]" />
           </div>
@@ -41,7 +41,7 @@ const FeatureSection = () => {
             <p className="text-center text-sm">{ft('delivery_desc')}</p>
           </div>
         </div>
-        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 shadow-2xl ring-2 ring-gray-200">
+        <div className="flex h-75 w-50 flex-col items-center justify-center rounded-lg bg-gray-50 ring-2 shadow-xl ring-gray-200">
           <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-[#F06A6A]/30">
             <FontAwesomeIcon icon={faCommentDots} className="text-[#D32D27]" />
           </div>

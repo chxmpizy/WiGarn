@@ -20,5 +20,8 @@
     "delivery_desc": " you can choose to pick up directly from store with yourself or have delivered to your doorstep.",
     "chat": "Chat with owner",
     "chat_desc": "you can chat with the store owner to ask questions or get more information about the products."
+  },
+  "Testimonials" : {
+    "title" : "Testimonials"
   }
 }
