@@ -2,7 +2,7 @@
   "Navbar": {
     "home": "Home",
     "store": "Store",
-    "contact": "Contact"
+    "category": "Category"
   },
   "Hero": {
     "title": "Every Scrap Store. Just One Website.",
@@ -21,7 +21,7 @@
     "chat": "Chat with owner",
     "chat_desc": "you can chat with the store owner to ask questions or get more information about the products."
   },
-  "Testimonials" : {
-    "title" : "Testimonials"
+  "Testimonials": {
+    "title": "Testimonials"
   }
 }

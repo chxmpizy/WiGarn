@@ -43,7 +43,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
           className="cursor-pointer text-xl"
         >
-          <Link href="#" className="px-2 py-2">
+          <Link href="/" className="px-2 py-2">
             {nb('home')}
           </Link>
         </motion.div>
@@ -56,7 +56,7 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
           className="text-xl"
         >
-          <Link href="#" className="px-2 py-1">
+          <Link href="/store" className="px-2 py-1">
             {nb('store')}
           </Link>
         </motion.div>
@@ -69,8 +69,8 @@ const Navbar = () => {
           transition={{ duration: 0.3 }}
           className="text-xl"
         >
-          <Link href="#" className="px-2 py-1">
-            {nb('contact')}
+          <Link href="/category" className="px-2 py-1">
+            {nb('category')}
           </Link>
         </motion.div>
         <div
@@ -90,7 +90,7 @@ const Navbar = () => {
         <div className="relative">
           <FontAwesomeIcon
             width={30}
-            className="cursor-pointer"
+            className="cursor-pointer text-lg"
             icon={faCartShopping}
           />
           <div className="absolute bottom-3.5 left-2.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-400">
