@@ -15,12 +15,21 @@
   --color-gray-700: oklch(37.3% 0.034 259.733);
   --color-gray-800: oklch(27.8% 0.033 256.848);
   --color-gray-900: oklch(21% 0.034 264.665);
-  --color-test : #e18528;
 }
 @theme {
   --color-primary: var(--color-primary);
   --color-secondary: var(--color-secondary);
   --color-primary_light: var(--color-primary_light);
+  --color-gray-50: var(--color-gray-50);
+  --color-gray-100: var(--color-gray-100);
+  --color-gray-200: var(--color-gray-200);
+  --color-gray-300: var(--color-gray-300);
+  --color-gray-400: var(--color-gray-400);
+  --color-gray-500: var(--color-gray-500);
+  --color-gray-600: var(--color-gray-600);
+  --color-gray-700: var(--color-gray-700);
+  --color-gray-800: var(--color-gray-800);
+  --color-gray-900: var(--color-gray-900);
 }
 html {
   color: var(--font-color);
