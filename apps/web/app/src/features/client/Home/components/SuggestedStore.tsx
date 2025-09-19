@@ -1,20 +1,7 @@
 'use client';
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from '@ui/card';
-import SizeBadge from '@/app/src/shared/components/sizeBadge/SizeBadge';
-import { Button } from '@ui/button';
-import StarRating from '@src/shared/components/star/StarRating';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { useTranslations } from 'next-intl';
-import StoreCard from '@/app/src/shared/components/storeCard/StoreCard';
+import StoreCard from '@src/shared/components/storeCard/StoreCard';
 
 const SuggestedStore = () => {
   const sg = useTranslations('Suggested_Stores');
