@@ -10,7 +10,7 @@ interface StarRatingProps {
 
 const StarRating = ({ rating }: StarRatingProps) => {
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="ml-1 flex items-center gap-0.5">
       {Array(5)
         .fill(null)
         .map((_, idx) => {
@@ -30,7 +30,9 @@ const StarRating = ({ rating }: StarRatingProps) => {
             />
           );
         })}
-      <h1 className="hidden px-1 max-sm:inline-block md:block">{rating}/5</h1>
+      <h1 className="text-primary hidden px-1 text-center text-sm max-sm:inline-block md:block">
+        {rating}/5
+      </h1>
     </div>
   );
 };

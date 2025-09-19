@@ -15,7 +15,7 @@ const geistMono = localFont({
   variable: '--font-geist-mono',
 });
 export const metadata: Metadata = {
-  title: 'RanAHLite',
+  title: 'RanAhRai',
   description: 'One website , Many Stores',
 };
 

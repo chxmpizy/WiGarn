@@ -21,7 +21,14 @@
     "chat": "Chat with owner",
     "chat_desc": "you can chat with the store owner to ask questions or get more information about the products."
   },
+  "Suggested_Stores": {
+    "title": "Suggested Stores"
+  },
   "Testimonials": {
     "title": "Testimonials"
+  },
+  "Footer":{
+    "contact":"Contact Us",
+    "social":"Social Media"
   }
 }

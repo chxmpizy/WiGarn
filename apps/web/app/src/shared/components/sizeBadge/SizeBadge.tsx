@@ -13,18 +13,27 @@ const SizeBadge = ({ size }: SizeProps) => {
   return (
     <div>
       {size === 'small' ? (
-        <Badge variant="default" className="bg-[#8bfa8b]">
+        <Badge
+          variant="default"
+          className="text-primary flex items-center gap-1 rounded-2xl bg-[#a1eba1] px-2 py-1"
+        >
           <FontAwesomeIcon icon={faStore} />
           {size.toLocaleUpperCase()}
         </Badge>
       ) : size === 'medium' ? (
-        <Badge variant="default">
-          <FontAwesomeIcon icon={faWarehouse} className="bg-[#faf68b]" />
+        <Badge
+          variant="default"
+          className="text-primary flex items-center gap-1 rounded-2xl bg-[#e5eba1] px-2 py-1"
+        >
+          <FontAwesomeIcon icon={faWarehouse} />
           {size.toLocaleUpperCase()}
         </Badge>
       ) : (
-        <Badge variant="default">
-          <FontAwesomeIcon icon={faBuilding} className="bg-[#fa8b8b]" />
+        <Badge
+          variant="default"
+          className="text-primary flex items-center gap-1 rounded-2xl bg-[#eba1a1] px-2 py-1"
+        >
+          <FontAwesomeIcon icon={faBuilding} />
           {size.toLocaleUpperCase()}
         </Badge>
       )}

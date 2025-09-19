@@ -8,8 +8,10 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
+  const ft = useTranslations('Footer');
   return (
     <div className="bg-primary text-secondary flex items-center justify-around py-5">
       <div className="flex flex-col">
@@ -24,7 +26,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col gap-4">
         <div>
-          <h1 className="text-xl font-semibold">Contacts Us</h1>
+          <h1 className="text-xl font-semibold">{ft('contact')}</h1>
         </div>
         <div className="flex flex-col gap-2">
           <h1>
@@ -39,7 +41,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col items-start justify-start gap-4">
         <div>
-          <h1 className="text-2xl font-semibold">Socials</h1>
+          <h1 className="text-2xl font-semibold">{ft('social')}</h1>
         </div>
         <div className="flex gap-5">
           <Link href="#" className="">
