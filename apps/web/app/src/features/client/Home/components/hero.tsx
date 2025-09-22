@@ -15,26 +15,6 @@ const Hero = () => {
   const [current, setCurrent] = React.useState(0);
   const hr = useTranslations('Hero');
   const [count, setCount] = React.useState(0);
-  const heroSlides = [
-    {
-      image: '/abstract-gradient-hero.png',
-      title: 'Welcome to Our Platform',
-      description:
-        'Discover amazing features and join thousands of satisfied customers who trust our service',
-    },
-    {
-      image: '/modern-tech-background-with-blue-gradients.jpg',
-      title: 'Innovation at Its Best',
-      description:
-        'Experience cutting-edge technology designed to transform your business operations',
-    },
-    {
-      image: '/professional-team-collaboration-workspace.jpg',
-      title: 'Built for Teams',
-      description:
-        'Collaborate seamlessly with powerful tools that bring your team together',
-    },
-  ];
 
   React.useEffect(() => {
     if (!api) {
@@ -50,7 +30,7 @@ const Hero = () => {
   }, [api]);
 
   return (
-    <div className="bg-background flex h-[calc(90vh)] items-center justify-around overflow-hidden text-black">
+    <div className="bg-background flex h-[calc(80vh)] items-center justify-around overflow-hidden text-black">
       <div className="flex flex-col items-center justify-around px-2 text-2xl leading-12 font-bold">
         <h1>
           <span className="text-primary text-4xl">{hr('title')}</span>
