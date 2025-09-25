@@ -26,7 +26,7 @@ const StarRating = ({ rating }: StarRatingProps) => {
                     : faStar
               }
               name="star"
-              className="text-yellow-500"
+              className="text-sm text-yellow-500"
             />
           );
         })}
