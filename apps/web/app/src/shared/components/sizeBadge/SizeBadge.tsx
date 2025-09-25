@@ -4,18 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faWarehouse } from '@fortawesome/free-solid-svg-icons';
+import { cn } from '@ui/lib/utils';
 
 interface SizeProps {
   size: 'small' | 'medium' | 'large';
+  className?: string;
 }
 
-const SizeBadge = ({ size }: SizeProps) => {
+const SizeBadge = ({ size, className }: SizeProps) => {
   return (
     <div>
       {size === 'small' ? (
         <Badge
           variant="default"
-          className="text-primary flex items-center gap-1 rounded-2xl bg-[#a1eba1] px-2 py-1"
+          className={cn(
+            'text-primary flex items-center gap-1 rounded-2xl bg-[#a1eba1] px-2 py-1',
+            className,
+          )}
         >
           <FontAwesomeIcon icon={faStore} />
           {size.toLocaleUpperCase()}
@@ -23,7 +28,10 @@ const SizeBadge = ({ size }: SizeProps) => {
       ) : size === 'medium' ? (
         <Badge
           variant="default"
-          className="text-primary flex items-center gap-1 rounded-2xl bg-[#e5eba1] px-2 py-1"
+          className={cn(
+            'text-primary flex items-center gap-1 rounded-2xl bg-[#e5eba1] px-2 py-1',
+            className,
+          )}
         >
           <FontAwesomeIcon icon={faWarehouse} />
           {size.toLocaleUpperCase()}
@@ -31,7 +39,10 @@ const SizeBadge = ({ size }: SizeProps) => {
       ) : (
         <Badge
           variant="default"
-          className="text-primary flex items-center gap-1 rounded-2xl bg-[#eba1a1] px-2 py-1"
+          className={cn(
+            'text-primary flex items-center gap-1 rounded-2xl bg-[#eba1a1] px-2 py-1',
+            className,
+          )}
         >
           <FontAwesomeIcon icon={faBuilding} />
           {size.toLocaleUpperCase()}
