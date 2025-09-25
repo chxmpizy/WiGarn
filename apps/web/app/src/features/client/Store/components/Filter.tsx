@@ -3,9 +3,11 @@ import { Input } from '@ui/input';
 
 const Filter = () => {
   return (
-    <div>
-      <h1>Filter Test</h1>
-      <Input placeholder="Search..." />
+    <div className="mr-5 w-1/5">
+      <Input
+        placeholder="Search..."
+        className="border-primary rounded-2xl border-2"
+      />
     </div>
   );
 };
