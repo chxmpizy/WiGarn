@@ -4,9 +4,8 @@ import Stores from '../components/Stores';
 
 const Store = () => {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-4">
-      <h1 className="text-3xl">Store</h1>
-      <div className="flex justify-between px-6">
+    <div className="flex h-full items-center justify-center gap-4">
+      <div className="flex flex-col justify-between gap-4 px-6">
         <Filter />
         <Stores />
       </div>
