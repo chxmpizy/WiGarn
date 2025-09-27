@@ -28,7 +28,7 @@ const StoreCard = ({ storeName, storeSize, rating }: StoreCardProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4">
-          <div className="flex text-sm">
+          <div className="flex items-center text-sm">
             <h1>Size :</h1>
             <SizeBadge size={storeSize} />
           </div>
