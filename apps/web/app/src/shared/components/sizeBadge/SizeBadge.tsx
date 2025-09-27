@@ -18,7 +18,7 @@ const SizeBadge = ({ size, className }: SizeProps) => {
         <Badge
           variant="default"
           className={cn(
-            'text-primary flex items-center gap-1 rounded-2xl bg-[#a1eba1] px-2 py-1',
+            'text-primary mx-2 flex items-center gap-1 rounded-2xl bg-[#a1eba1] px-2 py-1',
             className,
           )}
         >
@@ -29,7 +29,7 @@ const SizeBadge = ({ size, className }: SizeProps) => {
         <Badge
           variant="default"
           className={cn(
-            'text-primary flex items-center gap-1 rounded-2xl bg-[#e5eba1] px-2 py-1',
+            'text-primary mx-2 flex items-center gap-1 rounded-2xl bg-[#e5eba1] px-2 py-1',
             className,
           )}
         >
@@ -40,7 +40,7 @@ const SizeBadge = ({ size, className }: SizeProps) => {
         <Badge
           variant="default"
           className={cn(
-            'text-primary flex items-center gap-1 rounded-2xl bg-[#eba1a1] px-2 py-1',
+            'text-primary mx-2 flex items-center gap-1 rounded-2xl bg-[#eba1a1] px-2 py-1',
             className,
           )}
         >
