@@ -3,12 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './module/database/database.module';
 import { UsersModule } from './module/users/users.module';
-// import { ControllerService } from './module/controller/controller.service';
 import { DatabaseService } from './module/database/database.service';
 import { PrismaController } from './module/database/database.controller';
 import { AuthModule } from './module/auth/auth.module';
 import { StoreModule } from './module/store/store.module';
-// import { ProductModule } from './module/product/product.module';
+import { ProductsModule } from './module/products/products.module';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ import { StoreModule } from './module/store/store.module';
     UsersModule,
     AuthModule,
     StoreModule,
-    // ProductModule,
+    ProductsModule,
   ],
   controllers: [AppController, PrismaController],
   providers: [AppService, DatabaseService],
