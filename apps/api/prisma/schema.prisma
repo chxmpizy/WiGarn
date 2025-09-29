@@ -61,7 +61,7 @@ model users {
   district String
   province String
   phoneNumber String
-  b_date DateTime 
+  b_date String 
   role Role
   postcode String
    createdAt       DateTime   @default(now())   // เวลาที่สร้าง
