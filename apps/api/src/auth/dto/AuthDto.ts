@@ -41,7 +41,8 @@ export class AuthRegisterDto {
   @IsString()
   phoneNumber: string;
 
-  b_date: Date | string;
+  @IsString()
+  b_date: string;
 
   @IsEnum(['USER', 'SELLER', 'ADMIN'])
   role: 'USER' | 'SELLER' | 'ADMIN';
