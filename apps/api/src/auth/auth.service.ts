@@ -30,8 +30,6 @@ export class AuthService {
       });
       if (!user || !(await bcrypt.compare(login.password, user.password)))
         throw new UnauthorizedException('Invalid credentials');
-      const secret = process.env.JWT_SECRET;
-      console.log('JWT Secret ->', secret);
 
       const payload = { sub: user.id, email: user.email };
       const token = this.jwt.sign(payload);
