@@ -9,22 +9,30 @@ import { Button } from '@ui/button';
 import z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import {
   Form,
   FormField,
   FormItem,
   FormControl,
   FormLabel,
-  FormDescription,
   FormMessage,
 } from '@ui/form';
 import { Label } from '@ui/label';
 
-const filterSchema = z.object({ size: z.enum(['Small', 'Medium', 'Large']) });
+const filterSizeSchema = z.object({
+  size: z.enum(['Small', 'Medium', 'Large']),
+});
+const filterRatinghSchema = z.object({
+  rating: z.enum(['0-1', '2-3', '4-5']),
+});
 
 const Filter = () => {
-  const form = useForm<z.infer<typeof filterSchema>>({
-    resolver: zodResolver(filterSchema),
+  const sizeForm = useForm<z.infer<typeof filterSizeSchema>>({
+    resolver: zodResolver(filterSizeSchema),
+  });
+  const ratingForm = useForm<z.infer<typeof filterRatinghSchema>>({
+    resolver: zodResolver(filterRatinghSchema),
   });
   const [isFilter, setIsFilter] = useState(false);
   return (
@@ -38,32 +46,75 @@ const Filter = () => {
           <FontAwesomeIcon icon={isFilter ? faChevronUp : faChevronDown} />
         </div>
         {isFilter && (
-          <div className="absolute mt-2 h-1/2 w-1/5 rounded-lg border-2 border-gray-200 bg-white shadow-lg">
-            <div>
-              <Form {...form}>
+          <div className="absolute mt-2 w-1/7 rounded-lg border-2 border-gray-200 bg-white shadow-lg">
+            <div className="flex flex-col gap-3 px-4 py-2">
+              <Form {...sizeForm}>
                 <FormField
-                  control={form.control}
+                  control={sizeForm.control}
                   name="size"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Size</FormLabel>
+                      <FormLabel className="text-lg font-bold">Size</FormLabel>
                       {['Small', 'Medium', 'Large'].map((s) => {
                         return (
                           <FormControl key={s}>
-                            <div>
-                              <Label htmlFor={s}>{s}</Label>
+                            <div className="flex items-center">
                               <Input
                                 id={s}
                                 type="radio"
                                 value={s}
                                 checked={field.value === s}
                                 onChange={() => field.onChange(s)}
+                                className="w-auto"
                               />
+                              <Label htmlFor={s} className="ml-2 w-auto">
+                                {s}
+                              </Label>
                             </div>
                           </FormControl>
                         );
                       })}
-                      <FormDescription>This is a Size Select</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </Form>
+              <Form {...ratingForm}>
+                <FormField
+                  control={ratingForm.control}
+                  name="rating"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-lg font-bold">
+                        Rating
+                      </FormLabel>
+                      {['4-5', '2-3', '0-1'].map((s) => {
+                        return (
+                          <FormControl key={s}>
+                            <div className="flex items-center">
+                              <Input
+                                id={s}
+                                type="radio"
+                                value={s}
+                                checked={field.value === s}
+                                onChange={() => field.onChange(s)}
+                                className="w-auto"
+                              />
+                              <Label
+                                htmlFor={s}
+                                className="ml-2 flex w-20 items-center"
+                              >
+                                {s}{' '}
+                                <FontAwesomeIcon
+                                  icon={faStar}
+                                  name="star"
+                                  className="w-10 text-xs text-yellow-500"
+                                />
+                              </Label>
+                            </div>
+                          </FormControl>
+                        );
+                      })}
                       <FormMessage />
                     </FormItem>
                   )}
