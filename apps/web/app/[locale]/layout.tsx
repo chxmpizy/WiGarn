@@ -17,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: 'RanAhRai',
   description: 'One website , Many Stores',
+  icons: {
+    icon: '/RanAHRai.svg',
+  },
 };
 
 export default async function LocaleLayer({

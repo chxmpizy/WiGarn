@@ -1,135 +1,112 @@
-# Turborepo starter
+# Ran Ah Rai Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+This monorepo contains both the **Frontend** (Next.js) and **Backend** (NestJS + Prisma) applications for the Ran Ah Rai project.
 
-## Using this example
+---
 
-Run the following command:
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Install Dependencies](#install-dependencies)
+  - [Start the Backend (API)](#start-the-backend-api)
+  - [Start the Frontend (Web)](#start-the-frontend-web)
+- [API Routing Example](#api-routing-example)
+- [Tech Stack](#tech-stack)
+- [Useful Commands](#useful-commands)
+
+---
+
+## Project Structure
+
+```
+apps/
+  api/    # NestJS backend (with Prisma)
+  web/    # Next.js frontend
+packages/
+  ...     # Shared packages (UI, configs, etc.)
+```
+
+---
+
+## Getting Started
+
+### 1. Install Dependencies
+
+At the root of the project, run:
 
 ```sh
-npx create-turbo@latest
+yarn install
 ```
 
-## What's inside?
+### 2. Start the Backend (API)
 
-This Turborepo includes the following packages/apps:
+Navigate to the backend folder and start the NestJS server:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```sh
+cd apps/api
+# Development mode
+yarn start:dev
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+- The API will be available at `http://localhost:3001` (or your configured port).
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### 3. Start the Frontend (Web)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+In a new terminal, navigate to the frontend folder and start the Next.js app:
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```sh
+cd apps/web
+yarn dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+- The frontend will be available at `http://localhost:3000`.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+---
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+## API Routing Example
 
-### Remote Caching
+The backend uses [Prisma](https://www.prisma.io/) for database access. Here’s an example of a RESTful API for `products`:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Example: `apps/api/src/module/products/products.controller.ts`
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```ts
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- **GET `/products`**: List all products
+- **GET `/products/:id`**: Get a product by ID
+- **POST `/products`**: Create a new product
+- **PUT `/products/:id`**: Update a product
+- **DELETE `/products/:id`**: Delete a product
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+The service uses Prisma to interact with the database.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+---
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+## Tech Stack
 
-## Useful Links
+- **Frontend:** [Next.js](https://nextjs.org/) (React)
+- **Backend:** [NestJS](https://nestjs.com/)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Monorepo:** [Turborepo](https://turbo.build/repo)
+- **Package Manager:** [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)
 
-Learn more about the power of Turborepo:
+---
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## Useful Commands
+
+From the root:
+
+- `yarn install` — Install all dependencies
+- `yarn dev` — Start all apps in development mode (if configured in turbo)
+- `cd apps/api && yarn start:dev` — Start backend API
+- `cd apps/web && yarn dev` — Start frontend
+
+---
+
+## Notes
+
+- Make sure your database is running and Prisma is migrated (`yarn prisma migrate dev` in `apps/api`).
+- Environment variables for the backend should be set in `apps/api/.env`.
+
+---
