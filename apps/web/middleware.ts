@@ -11,7 +11,12 @@ export const middleware = (req: NextRequest) => {
 
   //auth token
   const token = req.cookies.get('token')?.value;
-  if (!token && !req.nextUrl.pathname.startsWith('/')) {
+  if (
+    !token &&
+    (!req.nextUrl.pathname.startsWith(`/login`) ||
+      !req.nextUrl.pathname.startsWith(`/register`) ||
+      !req.nextUrl.pathname.startsWith(`/`))
+  ) {
     return NextResponse.redirect(new URL('/login', req.url));
   }
   return NextResponse.next();
