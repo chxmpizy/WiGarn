@@ -31,11 +31,11 @@ const Navbar = () => {
   }, []);
   return (
     <div
-      className={`z-99 flex h-18 w-full items-center justify-between px-12 py-2 duration-300 ${isScrolled ? 'bg-primary text-secondary fixed' : 'text-primary bg-secondary'}`}
+      className={`z-9 flex h-18 items-center justify-between overflow-hidden px-12 py-2 duration-300 ${isScrolled ? 'fixed mx-[calc(100%-95%)] mt-1 w-[calc(90%)] rounded-lg backdrop-blur-xl' : 'w-full bg-none backdrop-blur-none'} text-primary`}
     >
       <h1 className="flex w-40 items-center justify-center text-2xl font-bold">
         <Image
-          src={isScrolled ? '/RanAhRai 1.svg' : '/RanAhRai.svg'}
+          src={'/RanAhRai.svg'}
           width={90}
           height={90}
           alt="RanAhRai Logo"
@@ -82,14 +82,14 @@ const Navbar = () => {
           </Link>
         </motion.div>
         <div
-          className={`text-medium flex items-center justify-center rounded-2xl border-2 duration-300 ${isScrolled ? 'bg-primary text-primary border-secondary' : 'border-primary bg-secondary text-secondary'} px-2 py-1 font-medium`}
+          className={`text-medium border-primary text-secondary flex items-center justify-center rounded-2xl border-2 bg-none px-2 py-1 font-medium duration-300`}
         >
           <Input
-            className={`w-30 border-none duration-300 outline-none ${isScrolled ? 'text-secondary placeholder:text-secondary' : 'text-primary placeholder:text-primary'}`}
+            className={`text-primary placeholder:text-primary w-30 border-none duration-300 outline-none`}
             placeholder={`${nbPath === 'en' ? 'Search' : 'ค้นหา'}`}
           />
           <FontAwesomeIcon
-            className={`w-11 cursor-pointer rounded-2xl px-1 py-1.5 duration-300 ${isScrolled ? 'hover:text-primary text-secondary hover:bg-secondary' : 'text-primary hover:bg-primary hover:text-secondary'} h`}
+            className={`text-primary hover:bg-primary hover:text-secondary h w-11 cursor-pointer rounded-2xl px-1 py-1.5 duration-300`}
             icon={faSearch}
           />
         </div>
@@ -107,19 +107,11 @@ const Navbar = () => {
             </span>
           </div>
         </div>
-        <div
-          className={`flex gap-2 ${isScrolled ? 'text-secondary' : 'text-primary'} `}
-        >
+        <div className={`text-primary flex gap-2`}>
           <Link
             href="/th"
             className={`rounded-full px-1.5 duration-300 ${
-              nbPath === 'th'
-                ? isScrolled
-                  ? `text-primary bg-secondary`
-                  : !isScrolled
-                    ? 'bg-primary text-secondary'
-                    : ''
-                : ''
+              nbPath === 'th' ? 'bg-primary text-secondary' : ''
             }`}
           >
             TH
@@ -128,20 +120,14 @@ const Navbar = () => {
           <Link
             href="/en"
             className={`rounded-full px-1.5 duration-300 ${
-              nbPath === 'en'
-                ? isScrolled
-                  ? `text-primary bg-secondary`
-                  : !isScrolled
-                    ? 'bg-primary text-secondary'
-                    : ''
-                : ''
+              nbPath === 'en' ? 'bg-primary text-secondary' : ''
             }`}
           >
             EN
           </Link>
         </div>
         <div
-          className={`flex h-10 w-10 items-center justify-center rounded-full duration-300 ${isScrolled ? 'text-primary bg-secondary' : 'bg-primary text-secondary'} text-center font-bold`}
+          className={`bg-primary text-secondary flex h-10 w-10 items-center justify-center rounded-full text-center font-bold duration-300`}
         >
           <Avatar>
             <AvatarFallback>AR</AvatarFallback>

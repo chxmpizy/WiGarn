@@ -31,6 +31,7 @@ const Hero = () => {
 
   return (
     <div className="bg-background flex h-[calc(80vh)] items-center justify-around overflow-hidden text-black">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_30%_30%,#a78bfa,transparent_25%),radial-gradient(circle_at_70%_70%,#f472b6,transparent_25%)] opacity-60 blur-3xl"></div>
       <div className="flex flex-col items-center justify-around px-2 text-2xl leading-12 font-bold">
         <h1>
           <span className="text-primary text-4xl">{hr('title')}</span>
