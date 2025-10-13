@@ -17,8 +17,14 @@ jobs:
         with:
           node-version: '20'
           cache: 'yarn' # cache yarn dependencies
+
+      - name: 'Enable Corepack (for Yarn 4)'
+        run: |
+          corepack enable
+          corepack prepare yarn@4.9.2 --activate
+
       - name: 'install_dependencies'
         run: yarn install
-        
+
       - name: 'Build Turborepo'
         run: yarn turbo run build --filter=...
