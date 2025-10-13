@@ -1,0 +1,24 @@
+name: 'Ran Ah Rai CI/CD' #Workflow name
+
+on: # Trigger the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest # The type of runner that the job will run on
+
+    steps:
+      - name: 'checkout_code'
+        uses: actions/checkout@v5
+
+      - name: "'setup_node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn' # cache yarn dependencies
+      - name: 'install_dependencies'
+        run: yarn install
+        
+      - name: 'Build Turborepo'
+        run: yarn turbo run build --filter=...
