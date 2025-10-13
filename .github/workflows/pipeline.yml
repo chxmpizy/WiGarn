@@ -27,5 +27,5 @@ jobs:
 
       - name: 'Build Turborepo'
         run: |
-          yarn turbo run build --filter=web
-          yarn turbo run build --filter=api
+          yarn run web:build
+          yarn run api:build
