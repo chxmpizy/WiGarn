@@ -50,7 +50,7 @@ enum MessageType {
   FILE
   VIDEO
 }
-model users {
+model Users {
   id String @id @default(uuid())
   name String
   email String @unique
@@ -66,7 +66,7 @@ model users {
   postcode String
    createdAt       DateTime   @default(now())   // เวลาที่สร้าง
   updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
-  Stores stores[]
+  Stores Stores[]
   Cart Cart[]
   Order Orders[]
   Payment Payment[]
@@ -74,10 +74,10 @@ model users {
   Message Messages[]
 }
 
-model stores {
+model Stores {
   id Int @id @default(autoincrement())
   s_name String
-  users users @relation(fields: [user_id] , references: [id])
+  users Users @relation(fields: [user_id] , references: [id])
   user_id String
   s_size StoreSize
   estimated_date DateTime
@@ -101,25 +101,25 @@ model ScrapItems {
   rating Float
   stock       Int       @default(0)
   imgUrl String?
-  stores stores @relation(fields: [store_id] , references: [id])
+  stores Stores @relation(fields: [store_id] , references: [id])
   store_id Int
-  order_item Order_items[]
-  cart_item Cart_items[]
+  order_item  OrderItems[]
+  cart_item CartItems[]
   createdAt       DateTime   @default(now())   // เวลาที่สร้าง
   updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
 }
 model Cart {
   id Int @id @default(autoincrement())
-  user users @relation(fields: [user_id] , references: [id])
+  user Users @relation(fields: [user_id] , references: [id])
   user_id String
   createdAt DateTime @default(now())
 
-  cartItems Cart_items[]
+  cartItems CartItems[]
   order Orders[]
 }
 model ShippingAddress {
   id Int @id @default(autoincrement())
-  user users @relation(fields: [user_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id])
   user_id String
   house_number String
   road String?
@@ -133,17 +133,17 @@ model Orders {
   id Int @id @default(autoincrement())
   cart Cart @relation(fields: [cart_id] , references: [id])
   cart_id Int
-  user users @relation(fields: [user_id] , references: [id])
+  user Users @relation(fields: [user_id] , references: [id])
   user_id String
   status      Status   @default(PENDING)
   channel GetItemChannel
   payment Payment[] 
   total_price Int
-  order_item Order_items[]
+  order_item OrderItems[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
-model Order_items {
+model OrderItems {
   id        Int     @id @default(autoincrement())
   order_id  Int
   item_id   Int
@@ -152,7 +152,7 @@ model Order_items {
   orders    Orders  @relation(fields: [order_id], references: [id])
   items     ScrapItems   @relation(fields: [item_id], references: [id])
 }
-model Cart_items {
+model CartItems {
   id       Int   @id @default(autoincrement())
   cart_id  Int
   item_id  Int
@@ -162,7 +162,7 @@ model Cart_items {
 }
 model Payment {
   id Int @id @default(autoincrement())
-  user users @relation(fields: [user_id] , references: [id])
+  user Users @relation(fields: [user_id] , references: [id])
   user_id String
   order Orders @relation(fields: [order_id], references: [id])
   order_id Int
@@ -183,7 +183,7 @@ model Messages {
   id Int @id @default(autoincrement())
   conversation Conversations @relation(fields: [conver_id] , references: [id])
   conver_id Int
-  sender users @relation(fields: [sender_id] , references: [id])
+  sender Users @relation(fields: [sender_id] , references: [id])
   sender_id String
   content String[]
   messageType MessageType

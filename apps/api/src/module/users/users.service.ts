@@ -14,7 +14,7 @@ export class UsersService {
     return await this.databaseService.users.findUnique({ where: { id } });
   }
 
-  async update(id: string, updateUserDto: Prisma.usersUpdateInput) {
+  async update(id: string, updateUserDto: Prisma.UsersUpdateInput) {
     return await this.databaseService.users.update({
       where: { id },
       data: updateUserDto,

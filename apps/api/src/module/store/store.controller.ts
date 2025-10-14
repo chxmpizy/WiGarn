@@ -15,7 +15,7 @@ export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
   @Post()
-  create(@Body() createStore: Prisma.storesCreateInput) {
+  create(@Body() createStore: Prisma.StoresCreateInput) {
     return this.storeService.create(createStore);
   }
 
@@ -32,7 +32,7 @@ export class StoreController {
   @Put(':id')
   update(
     @Param('id') id: number,
-    @Body() updateStore: Prisma.storesUpdateInput,
+    @Body() updateStore: Prisma.StoresUpdateInput,
   ) {
     return this.storeService.update(+id, updateStore);
   }

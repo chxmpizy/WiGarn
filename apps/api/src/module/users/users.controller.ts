@@ -28,7 +28,7 @@ export class UsersController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateUserDto: Prisma.usersUpdateInput,
+    @Body() updateUserDto: Prisma.UsersUpdateInput,
   ) {
     return this.usersService.update(id, updateUserDto);
   }

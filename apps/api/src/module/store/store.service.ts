@@ -5,7 +5,7 @@ import { Prisma } from '@prisma/client';
 @Injectable()
 export class StoreService {
   constructor(private readonly database: DatabaseService) {}
-  create(createStore: Prisma.storesCreateInput) {
+  create(createStore: Prisma.StoresCreateInput) {
     return this.database.stores.create({
       data: {
         ...createStore,
@@ -25,7 +25,7 @@ export class StoreService {
     });
   }
 
-  update(id: number, updateStore: Prisma.storesUpdateInput) {
+  update(id: number, updateStore: Prisma.StoresUpdateInput) {
     return this.database.stores.update({
       where: { id: id },
       data: {
