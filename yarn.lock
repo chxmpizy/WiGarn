@@ -2175,7 +2175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:^6.17.1":
+"@prisma/client@npm:6.17.1":
   version: 6.17.1
   resolution: "@prisma/client@npm:6.17.1"
   peerDependencies:
@@ -4724,7 +4724,7 @@ __metadata:
     "@nestjs/platform-express": "npm:^11.0.1"
     "@nestjs/schematics": "npm:^11.0.0"
     "@nestjs/testing": "npm:^11.0.1"
-    "@prisma/client": "npm:^6.17.1"
+    "@prisma/client": "npm:6.17.1"
     "@swc/cli": "npm:^0.6.0"
     "@swc/core": "npm:^1.10.7"
     "@types/bcrypt": "npm:^6"
