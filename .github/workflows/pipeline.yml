@@ -23,7 +23,7 @@ jobs:
           corepack prepare yarn@4.9.2 --activate
 
       - name: 'install_dependencies'
-        run: yarn install --immutable
+        run: yarn install 
 
       - name: 'Build Turborepo'
         run: |
