@@ -8,8 +8,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { Prisma } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
+import { UserDto } from './dto/UserDto';
 
 @Controller('users')
 export class UsersController {
@@ -26,10 +26,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateUserDto: Prisma.UsersUpdateInput,
-  ) {
+  update(@Param('id') id: string, @Body() updateUserDto: UserDto) {
     return this.usersService.update(id, updateUserDto);
   }
 

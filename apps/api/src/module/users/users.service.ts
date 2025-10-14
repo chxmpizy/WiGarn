@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
-import { Prisma } from '@prisma/client';
+import { UserDto } from './dto/UserDto';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +14,7 @@ export class UsersService {
     return await this.databaseService.users.findUnique({ where: { id } });
   }
 
-  async update(id: string, updateUserDto: Prisma.UsersUpdateInput) {
+  async update(id: string, updateUserDto: UserDto) {
     return await this.databaseService.users.update({
       where: { id },
       data: updateUserDto,
