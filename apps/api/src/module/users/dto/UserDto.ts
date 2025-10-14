@@ -6,6 +6,12 @@ import {
   MinLength,
 } from 'class-validator';
 
+export enum UserRole {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  SELLER = 'SELLER',
+}
+
 export class UserDto {
   @IsString()
   name: string;
@@ -37,8 +43,8 @@ export class UserDto {
 
   @IsString()
   b_date: string;
-  @IsEnum(['USER', 'ADMIN', 'SELLER'])
-  role: 'USER' | 'SELLER' | 'ADMIN';
+  @IsEnum(UserRole)
+  role: UserRole;
 
   @IsString()
   postcode: string;

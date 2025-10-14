@@ -6,6 +6,12 @@ import {
   IsOptional,
 } from 'class-validator';
 
+export enum UserRole {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  SELLER = 'SELLER',
+}
+
 export class AuthLoginDto {
   @IsEmail()
   email: string;
@@ -44,8 +50,8 @@ export class AuthRegisterDto {
   @IsString()
   b_date: string;
 
-  @IsEnum(['USER', 'SELLER', 'ADMIN'])
-  role: 'USER' | 'SELLER' | 'ADMIN';
+  @IsEnum(UserRole)
+  role: UserRole;
 
   @IsString()
   postcode: string;

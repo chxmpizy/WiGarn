@@ -8,14 +8,14 @@ import {
   Delete,
 } from '@nestjs/common';
 import { StoreService } from './store.service';
-import { Prisma } from '@prisma/client';
+import { StoreDto } from './dto/StoreDto';
 
 @Controller('store')
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
   @Post()
-  create(@Body() createStore: Prisma.StoresCreateInput) {
+  create(@Body() createStore: StoreDto) {
     return this.storeService.create(createStore);
   }
 
@@ -30,10 +30,7 @@ export class StoreController {
   }
 
   @Put(':id')
-  update(
-    @Param('id') id: number,
-    @Body() updateStore: Prisma.StoresUpdateInput,
-  ) {
+  update(@Param('id') id: number, @Body() updateStore: StoreDto) {
     return this.storeService.update(+id, updateStore);
   }
 

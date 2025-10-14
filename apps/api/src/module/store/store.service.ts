@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/module/database/database.service';
-import { Prisma } from '@prisma/client';
+import { StoreDto } from './dto/StoreDto';
 
 @Injectable()
 export class StoreService {
   constructor(private readonly database: DatabaseService) {}
-  create(createStore: Prisma.StoresCreateInput) {
+  create(createStore: StoreDto) {
     return this.database.stores.create({
       data: {
         ...createStore,
@@ -25,7 +25,7 @@ export class StoreService {
     });
   }
 
-  update(id: number, updateStore: Prisma.StoresUpdateInput) {
+  update(id: number, updateStore: StoreDto) {
     return this.database.stores.update({
       where: { id: id },
       data: {

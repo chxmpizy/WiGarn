@@ -84,9 +84,9 @@ model Stores {
   s_imgUrl String[]
   s_house_number String
   s_road String?
-  s_sub_district String //optional
-  s_district String //optional
-  s_province String //optional
+  s_sub_district String? //optional
+  s_district String? //optional
+  s_province String? //optional
   createdAt       DateTime   @default(now())   // เวลาที่สร้าง
   updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
   s_status Boolean @default(true)

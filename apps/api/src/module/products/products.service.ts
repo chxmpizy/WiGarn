@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
-import { Prisma } from '@prisma/client';
+import { ProductDto } from './dto/ProductDto';
 
 @Injectable()
 export class ProductsService {
   constructor(private readonly database: DatabaseService) {}
 
-  create(createProduct: Prisma.ScrapItemsCreateInput) {
+  create(createProduct: ProductDto) {
     return this.database.scrapItems.create({
       data: {
         ...createProduct,
@@ -21,15 +21,15 @@ export class ProductsService {
   findOne(id: number) {
     return this.database.scrapItems.findUnique({
       where: {
-        id: id,
+        id,
       },
     });
   }
 
-  update(id: number, updateProduct: Prisma.ScrapItemsUpdateInput) {
+  update(id: number, updateProduct: ProductDto) {
     return this.database.scrapItems.update({
       where: {
-        id: id,
+        id,
       },
       data: {
         ...updateProduct,
