@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../node_modules/@prisma/client"
 }
 
 datasource db {
@@ -90,10 +90,10 @@ model stores {
   createdAt       DateTime   @default(now())   // เวลาที่สร้าง
   updatedAt       DateTime   @updatedAt        // เวลาที่อัปเดตล่าสุด
   s_status Boolean @default(true)
-  Scrap_Items Scrap_Items[]
+  Scrap_Items ScrapItems[]
 }
 
-model Scrap_Items {
+model ScrapItems {
   id Int @id @default(autoincrement())
   item_name String
   item_desc String?
@@ -150,7 +150,7 @@ model Order_items {
   quantity  Int
   price     Int     // snapshot ของราคาตอนสั่ง
   orders    Orders  @relation(fields: [order_id], references: [id])
-  items     Scrap_Items   @relation(fields: [item_id], references: [id])
+  items     ScrapItems   @relation(fields: [item_id], references: [id])
 }
 model Cart_items {
   id       Int   @id @default(autoincrement())
@@ -158,7 +158,7 @@ model Cart_items {
   item_id  Int
   quantity Int   @default(1)
   cart     Cart  @relation(fields: [cart_id], references: [id])
-  items    Scrap_Items @relation(fields: [item_id], references: [id])
+  items    ScrapItems @relation(fields: [item_id], references: [id])
 }
 model Payment {
   id Int @id @default(autoincrement())

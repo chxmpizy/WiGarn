@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { DatabaseService } from '../database/database.service';
-import { Prisma } from 'generated/prisma';
+import { Prisma } from '@prisma/client';
 
 @Controller('products')
 export class ProductsController {
@@ -19,7 +19,7 @@ export class ProductsController {
   ) {}
 
   @Post()
-  create(@Body() createProduct: Prisma.Scrap_ItemsCreateInput) {
+  create(@Body() createProduct: Prisma.ScrapItemsCreateInput) {
     return this.productsService.create(createProduct);
   }
 
@@ -36,7 +36,7 @@ export class ProductsController {
   @Put(':id')
   update(
     @Param('id') id: number,
-    @Body() updateProduct: Prisma.Scrap_ItemsUpdateInput,
+    @Body() updateProduct: Prisma.ScrapItemsUpdateInput,
   ) {
     return this.productsService.update(+id, updateProduct);
   }

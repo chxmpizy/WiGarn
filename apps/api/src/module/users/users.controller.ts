@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { Prisma } from 'generated/prisma';
+import { Prisma } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('users')
