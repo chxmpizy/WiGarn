@@ -4,10 +4,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "start": "turbo run start",
     "web:build": "cd apps/web && turbo run build --filter=web",
+    "web:start": "cd apps/web && next start ",
     "web:dev": "cd apps/web && turbo run dev --filter=web",
     "api:build": "cd apps/api && turbo run build --filter=api",
     "api:dev": "cd apps/api && turbo run dev --filter=api",
+    "apiStart": "cd apps/api && turbo run start --filter=api",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
