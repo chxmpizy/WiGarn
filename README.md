@@ -1,4 +1,4 @@
-# Ran Ah Rai Monorepo
+# Wi Garn
 
 This monorepo contains both the **Frontend** (Next.js) and **Backend** (NestJS + Prisma) applications for the Ran Ah Rai project.
 
