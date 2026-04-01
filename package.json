@@ -1,16 +1,10 @@
 {
-  "name": "ran-ah-lite",
+  "name": "Wi-Garn",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "web:build": "cd apps/web && turbo run build --filter=web",
-    "web:start": "cd apps/web && next start ",
-    "web:dev": "cd apps/web && turbo run dev --filter=web",
-    "api:build": "cd apps/api && turbo run build --filter=api",
-    "api:dev": "cd apps/api && turbo run dev --filter=api",
-    "apiStart": "cd apps/api && turbo run start --filter=api",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
@@ -23,26 +17,15 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "pnpm@9.0.0",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.0.0",
-    "@fortawesome/free-brands-svg-icons": "^7.0.0",
-    "@fortawesome/free-regular-svg-icons": "^7.0.0",
-    "@fortawesome/free-solid-svg-icons": "^7.0.0",
-    "@fortawesome/react-fontawesome": "^3.0.2",
-    "@hookform/resolvers": "^5.2.2",
-    "@nestjs/cli": "^11.0.10",
-    "@nestjs/mapped-types": "^2.1.0",
-    "framer-motion": "^12.23.12",
-    "next-auth": "^4.24.11",
-    "next-intl": "^4.3.5",
-    "prettier-plugin-tailwindcss": "^0.6.14",
-    "react-hook-form": "^7.63.0",
-    "tailwindcss": "4.0.0",
-    "zod": "^4.1.9"
+   "prettier": "^3.6.2",
+    "turbo": "^2.5.6",
+    "typescript": "5.9.2",
+    "prettier-plugin-tailwindcss": "^0.6.14"
   }
 }
