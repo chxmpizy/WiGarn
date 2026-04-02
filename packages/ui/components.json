@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "app/globals.css",
+    "css": "../../apps/web/app/globals.css",
     "baseColor": "gray",
     "cssVariables": true,
     "prefix": ""
@@ -15,7 +15,7 @@
     "components": "@/components",
     "utils": "@ui/lib/utils",
     "ui": "src",
-    "lib": "@/lib",
+    "lib": "@ui/lib",
     "hooks": "@/hooks"
   }
 }
