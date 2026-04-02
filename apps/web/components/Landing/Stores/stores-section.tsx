@@ -311,7 +311,7 @@ export function StoresSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-terracotta text-terracotta hover:bg-terracotta hover:text-cream"
+              className="border-terracotta text-terracotta hover:bg-terracotta hover:text-cream rounded-md px-3"
               onClick={() => setVisibleCount((prev) => prev + 6)}
             >
               Load More Restaurants

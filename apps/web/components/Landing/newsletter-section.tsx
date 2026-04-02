@@ -42,16 +42,16 @@ export function NewsletterSection() {
             </div>
             <Button
               type="submit"
-              className="bg-cream text-terracotta hover:bg-cream/90"
+              className="bg-cream text-terracotta hover:bg-cream/90 rounded-md px-3"
               disabled={isSubmitted}
             >
               {isSubmitted ? (
                 'Subscribed!'
               ) : (
-                <>
-                  <Send className="mr-2 h-4 w-4" />
+                <div className="flex items-center">
+                  <Send className="mr-2 h-4 w-6" />
                   Subscribe
-                </>
+                </div>
               )}
             </Button>
           </form>

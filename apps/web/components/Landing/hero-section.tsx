@@ -52,7 +52,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="bg-terracotta text-cream hover:bg-terracotta/90"
+                className="bg-terracotta text-cream hover:bg-terracotta/90 rounded-md px-3"
                 onClick={() => onNavigate('stores')}
               >
                 Explore Restaurants
@@ -60,7 +60,7 @@ export function HeroSection({ onNavigate }: HeroSectionProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-espresso/20 text-espresso hover:bg-espresso/5 bg-transparent"
+                className="border-espresso/20 text-espresso hover:bg-espresso/5 rounded-md bg-transparent px-3"
                 onClick={() => onNavigate('blog')}
               >
                 Read the Blog

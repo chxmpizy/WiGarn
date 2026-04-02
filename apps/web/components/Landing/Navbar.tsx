@@ -83,7 +83,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
             <button className="text-espresso/70 hover:text-espresso transition-colors">
               <Search className="h-5 w-5" />
             </button>
-            <Button className="bg-terracotta text-cream hover:bg-terracotta/90">
+            <Button className="bg-terracotta text-cream hover:bg-terracotta/90 rounded-md px-3">
               Write a Review
             </Button>
           </div>
