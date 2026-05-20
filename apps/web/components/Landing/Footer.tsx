@@ -52,7 +52,7 @@ export function Footer() {
             </div>
             <p className="text-cream/70 mt-4 max-w-sm">
               Your guide to extraordinary culinary experiences. Discover, taste,
-              and share the best food in your city.
+              and share the best food in your city EIEI.
             </p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
