@@ -1,0 +1,80 @@
+%% WiGarn — Restaurant Review Platform ER Model
+%% PostgreSQL + Drizzle ORM (see AGENTS.md)
+%%
+%% Fixes vs original sketch:
+%% - Removed User 1:N Restaurant (users write reviews; they do not "own" listings by default)
+%% - Added Restaurant 1:N Review (was missing despite rest_id)
+%% - Renamed fields, UUID PKs, timestamps, unique (user, restaurant) per review
+%% - password_hash (never store plaintext); avg_rating + review_count as cached aggregates
+
+erDiagram
+    USER ||--o{ REVIEW : writes
+    RESTAURANT ||--o{ REVIEW : receives
+    REVIEW ||--o{ REVIEW_PHOTO : includes
+    %% RESTAURANT ||--o{ RESTAURANT_CUISINE : has
+    %% CUISINE ||--o{ RESTAURANT_CUISINE : has
+
+    USER {
+        uuid id PK
+        string email UK "unique, not null"
+        string name "not null"
+        string image_url "nullable"
+        string password_hash "nullable if OAuth-only"
+        string role "user | admin"
+        timestamp email_verified_at "nullable"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    RESTAURANT {
+        uuid id PK
+        string name "not null"
+        string slug UK "URL-friendly unique"
+        text description "nullable"
+        string address_line1
+        string address_line2 "nullable"
+        string city
+        string state "nullable"
+        string postal_code "nullable"
+        string country "not null"
+        float latitude "nullable"
+        float longitude "nullable"
+        string phone "nullable"
+        string website "nullable"
+        string image_url "nullable"
+        int price_level "1-4, nullable"
+        decimal avg_rating "cached from reviews, nullable"
+        int review_count "cached, default 0"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    REVIEW {
+        uuid id PK
+        uuid restaurant_id FK
+        uuid user_id FK
+        smallint rating "1-5, not null"
+        string title "nullable"
+        text body "review text, not null"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    REVIEW_PHOTO {
+        uuid id PK
+        uuid review_id FK
+        string image_url "not null"
+        smallint sort_order "default 0"
+        timestamp created_at
+    }
+
+    %% CUISINE {
+    %%     uuid id PK
+    %%     string name UK "e.g. Thai, Italian"
+    %%     timestamp created_at
+    %% }
+
+    %% RESTAURANT_CUISINE {
+    %%     uuid restaurant_id PK_FK
+    %%     uuid cuisine_id PK_FK
+    %% }

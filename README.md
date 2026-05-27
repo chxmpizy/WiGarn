@@ -1,112 +1,150 @@
-# Wi Garn
+# WiGarn
 
-This monorepo contains both the **Frontend** (Next.js) and **Backend** (NestJS + Prisma) applications for the Ran Ah Rai project.
+**WiGarn** is a restaurant review platform for discovering restaurants and sharing reviews. This monorepo contains the **web app** (Next.js), **API** (Elysia.js), and **shared packages** used across both.
+
+For agent and contributor conventions (tech stack, design system, coding rules), see [AGENTS.md](./AGENTS.md).
 
 ---
 
 ## Table of Contents
 
 - [Project Structure](#project-structure)
+- [Apps & Packages](#apps--packages)
 - [Getting Started](#getting-started)
-  - [Install Dependencies](#install-dependencies)
-  - [Start the Backend (API)](#start-the-backend-api)
-  - [Start the Frontend (Web)](#start-the-frontend-web)
-- [API Routing Example](#api-routing-example)
 - [Tech Stack](#tech-stack)
 - [Useful Commands](#useful-commands)
+- [DevOps & Infrastructure](#devops--infrastructure)
 
 ---
 
 ## Project Structure
 
 ```
-apps/
-  api/    # NestJS backend (with Prisma)
-  web/    # Next.js frontend
-packages/
-  ...     # Shared packages (UI, configs, etc.)
+WiGarn/
+├── apps/
+│   ├── api/                 # Elysia.js REST API (port 3001)
+│   │   └── src/             # Routes, controllers, services
+│   └── web/                 # Next.js 16+ App Router (port 3000)
+│       ├── app/             # Pages, layouts, global styles
+│       ├── components/      # App-specific UI (e.g. Landing, Post)
+│       └── public/          # Static assets
+├── packages/
+│   ├── db/                  # Database schema & migrations (Drizzle ORM) — planned
+│   ├── ui/                  # Shared UI components & design system (shadcn/ui)
+│   ├── types/               # Shared TypeScript types & interfaces — planned
+│   ├── eslint-config/       # Shared ESLint configurations
+│   └── typescript-config/   # Shared TypeScript configurations
+├── .github/workflows/       # CI/CD (GitHub Actions)
+├── AGENTS.md                  # Project profile, design system, agent rules
+├── docker-compose.yml         # Local PostgreSQL & API services
+└── package.json               # Root workspace scripts (Bun + Turborepo)
 ```
+
+---
+
+## Apps & Packages
+
+| Path                                                         | Description                                                                                                                                                                                            |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`apps/web`](./apps/web)                                     | Next.js web application using the **App Router**. Serves the public UI for browsing restaurants and reading or writing reviews. Styled with **Tailwind CSS v4** and shared components from `@repo/ui`. |
+| [`apps/api`](./apps/api)                                     | **Elysia.js** backend exposing **REST APIs** for reviews, restaurants, and related resources. Handles request routing, validation, and business logic.                                                 |
+| [`packages/db`](./packages/db)                               | **Drizzle ORM** schema and migration logic against **PostgreSQL**. Centralizes database models and queries for use by the API. _(Planned — not yet in repo.)_                                          |
+| [`packages/ui`](./packages/ui)                               | Shared **shadcn/ui** (Nova preset) components and design tokens. Keeps the web app and future surfaces visually consistent.                                                                            |
+| [`packages/types`](./packages/types)                         | Shared **TypeScript** types and interfaces consumed by `apps/web`, `apps/api`, and other packages. _(Planned — not yet in repo.)_                                                                      |
+| [`packages/eslint-config`](./packages/eslint-config)         | Shared ESLint rules for apps and libraries.                                                                                                                                                            |
+| [`packages/typescript-config`](./packages/typescript-config) | Shared `tsconfig` bases for Next.js and React libraries.                                                                                                                                               |
 
 ---
 
 ## Getting Started
 
-### 1. Install Dependencies
+### Prerequisites
 
-At the root of the project, run:
+- [Bun](https://bun.sh/) `>= 1.3` (package manager and runtime)
+- [Node.js](https://nodejs.org/) `>= 18`
+- PostgreSQL (local or via `docker-compose.yml`)
 
-```sh
-yarn install
-```
+### 1. Install dependencies
 
-### 2. Start the Backend (API)
-
-Navigate to the backend folder and start the NestJS server:
+From the repository root:
 
 ```sh
-cd apps/api
-# Development mode
-yarn start:dev
+bun install
 ```
 
-- The API will be available at `http://localhost:3001` (or your configured port).
-
-### 3. Start the Frontend (Web)
-
-In a new terminal, navigate to the frontend folder and start the Next.js app:
+### 2. Start the API
 
 ```sh
-cd apps/web
-yarn dev
+bun api:dev
 ```
 
-- The frontend will be available at `http://localhost:3000`.
+The API runs at **http://localhost:3001**.
 
----
+### 3. Start the web app
 
-## API Routing Example
+In a separate terminal:
 
-The backend uses [Prisma](https://www.prisma.io/) for database access. Here’s an example of a RESTful API for `products`:
-
-### Example: `apps/api/src/module/products/products.controller.ts`
-
-```ts
+```sh
+bun web:dev
 ```
 
-- **GET `/products`**: List all products
-- **GET `/products/:id`**: Get a product by ID
-- **POST `/products`**: Create a new product
-- **PUT `/products/:id`**: Update a product
-- **DELETE `/products/:id`**: Delete a product
+The web app runs at **http://localhost:3000**.
 
-The service uses Prisma to interact with the database.
+### 4. Database (optional, Docker)
+
+```sh
+docker compose up -d db
+```
+
+Configure connection details in `apps/api/.env` when the database layer is wired up.
 
 ---
 
 ## Tech Stack
 
-- **Frontend:** [Next.js](https://nextjs.org/) (React)
-- **Backend:** [NestJS](https://nestjs.com/)
-- **ORM:** [Prisma](https://www.prisma.io/)
-- **Monorepo:** [Turborepo](https://turbo.build/repo)
-- **Package Manager:** [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)
+| Layer            | Technology                                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| **Frontend**     | [Next.js 16+](https://nextjs.org/) (App Router), React, TypeScript                             |
+| **Backend**      | [Elysia.js](https://elysiajs.com/) on Bun                                                      |
+| **Database**     | [Neon](https://neon.com/) with [Drizzle ORM](https://orm.drizzle.team/)                        |
+| **Styling & UI** | [Tailwind CSS v4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/) (Nova preset) |
+| **API style**    | REST                                                                                           |
+| **Cloud**        | AWS                                                                                            |
+| **DevOps**       | GitHub Actions, Docker, Kubernetes                                                             |
+| **Monorepo**     | [Turborepo](https://turbo.build/repo) + Bun workspaces                                         |
+| **Language**     | TypeScript (strict)                                                                            |
+
+**Code style:** use **named exports** only — no default exports.
 
 ---
 
 ## Useful Commands
 
-From the root:
+Run from the repository root:
 
-- `yarn install` — Install all dependencies
-- `yarn dev` — Start all apps in development mode (if configured in turbo)
-- `cd apps/api && yarn start:dev` — Start backend API
-- `cd apps/web && yarn dev` — Start frontend
+| Command                        | Description                               |
+| ------------------------------ | ----------------------------------------- |
+| `bun install`                  | Install all workspace dependencies        |
+| `bun web:dev`                  | Start Next.js dev server (port `3000`)    |
+| `bun api:dev`                  | Start Elysia API dev server (port `3001`) |
+| `bun build`                    | Build all apps via Turborepo              |
+| `cd apps/web && bun run build` | Production build for the web app only     |
+| `bun lint`                     | Run ESLint across the monorepo            |
+| `bun format`                   | Format code with Prettier                 |
+| `bun check-types`              | Type-check all packages                   |
+
+---
+
+## DevOps & Infrastructure
+
+- **CI/CD:** GitHub Actions workflow in [`.github/workflows/pipeline.yml`](./.github/workflows/pipeline.yml)
+- **Containers:** `docker-compose.yml` for local PostgreSQL and API services
+- **Design system:** color, typography, and spacing tokens are documented in [AGENTS.md](./AGENTS.md#design-theme)
 
 ---
 
 ## Notes
 
-- Make sure your database is running and Prisma is migrated (`yarn prisma migrate dev` in `apps/api`).
-- Environment variables for the backend should be set in `apps/api/.env`.
-
----
+- Environment variables for the API belong in `apps/api/.env`.
+- When `packages/db` is added, run Drizzle migrations from that package per project docs.
+- Contributor and AI agent guidelines live in [AGENTS.md](./AGENTS.md).

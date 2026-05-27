@@ -1,15 +1,47 @@
-# Elysia with Bun runtime
+# WiGarn API
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
+Elysia.js REST API for the WiGarn restaurant review platform. See [AGENTS.md](../../AGENTS.md) for monorepo conventions.
 
 ## Development
-To start the development server run:
-```bash
+
+```sh
 bun run dev
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+Runs at **http://localhost:3001** (`bun api:dev` from the repo root).
+
+## Folder structure
+
+```
+src/
+├── index.ts              # Entry point — starts the server
+├── app.ts                # Composes the Elysia application
+├── routes/               # Route plugins (HTTP paths & methods)
+│   ├── index.ts          # Registers all route modules
+│   ├── health.route.ts
+│   ├── restaurants/
+│   ├── reviews/
+│   └── users/
+├── controllers/          # Request handlers (delegate to services)
+│   ├── health.controller.ts
+│   ├── restaurants/
+│   ├── reviews/
+│   └── users/
+├── services/             # Business logic & data access
+│   ├── health.service.ts
+│   ├── restaurants/
+│   ├── reviews/
+│   └── users/
+├── plugins/              # Shared Elysia plugins
+├── middleware/           # Custom middleware
+├── lib/                  # Utilities (DB client, helpers)
+└── types/                # API-local TypeScript types
+```
+
+## Request flow
+
+```
+HTTP request → routes → controllers → services → (packages/db)
+```
+
+Use **named exports** only.
