@@ -8,6 +8,20 @@
       "when": 1780047293547,
       "tag": "0000_lean_leader",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1780056802400,
+      "tag": "0001_sharp_penance",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780079149949,
+      "tag": "0002_real_arclight",
+      "breakpoints": true
     }
   ]
 }

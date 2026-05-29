@@ -1,10 +1,6 @@
 import { Elysia } from 'elysia';
 import { registerRoutes } from './routes';
-import { drizzle } from 'drizzle-orm/neon-http';
-import { neon } from '@neondatabase/serverless';
-
-const sql = neon(process.env.DATABASE_URL!);
-export const db = drizzle({ client: sql });
+import { db } from '../db/db';
 
 export const createApp = () =>
   new Elysia({ name: 'wigarn-api' })
