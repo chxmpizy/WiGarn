@@ -1,6 +1,4 @@
-import { Elysia } from "elysia";
-import { healthController } from "../controllers/health.controller";
+import { Elysia } from 'elysia';
+// import { healthController } from "../controllers/health.controller";
 
-export const healthRoute = new Elysia({ prefix: "/health" }).get("/", () =>
-  healthController.check(),
-);
+export const healthRoute = new Elysia({ prefix: '/health' }).get('/', () => {});

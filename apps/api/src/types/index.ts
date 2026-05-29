@@ -1,4 +1,5 @@
 /** API-local types until shared types live in packages/types */
+import {z} from 'zod'
 
 export type UserRole = "user" | "admin";
 
@@ -49,32 +50,3 @@ export interface Review {
   createdAt: Date;
   updatedAt: Date;
 }
-
-export interface ReviewPhoto {
-  id: string;
-  reviewId: string;
-  imageUrl: string;
-  sortOrder: number;
-  createdAt: Date;
-}
-
-// export interface Cuisine {
-//   id: string;
-//   name: string;
-//   createdAt: Date;
-// }
-
-// export interface RestaurantCuisine {
-//   restaurantId: string;
-//   cuisineId: string;
-// }
-
-// /** One review per user per restaurant */
-// export type CreateReviewInput = Pick<
-//   Review,
-//   "restaurantId" | "rating" | "title" | "body"
-// >;
-
-// export type UpdateReviewInput = Partial<
-//   Pick<Review, "rating" | "title" | "body">
-// >;

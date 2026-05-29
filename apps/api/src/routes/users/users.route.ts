@@ -1,4 +1,10 @@
-import { Elysia } from "elysia";
+import { Elysia } from 'elysia';
 
 /** User REST routes — wire handlers via users.controller */
-export const usersRoute = new Elysia({ prefix: "/users" });
+export const usersRoute = new Elysia({ prefix: '/users' })
+  .get('/', () => {
+    return {
+      message: 'Hello World',
+    };
+  })
+  .post('/something', () => {});

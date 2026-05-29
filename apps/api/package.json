@@ -2,8 +2,8 @@
   "name": "api",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/app.ts"
+    "dev": "bun run --watch src/index.ts",
+    "test": "bun run --watch test/api_test.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

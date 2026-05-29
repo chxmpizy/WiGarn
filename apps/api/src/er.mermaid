@@ -27,22 +27,18 @@ erDiagram
     }
 
     RESTAURANT {
-        uuid id PK
+        id id PK
         string name "not null"
         string slug UK "URL-friendly unique"
         text description "nullable"
         string address_line1
-        string address_line2 "nullable"
         string city
         string state "nullable"
         string postal_code "nullable"
         string country "not null"
-        float latitude "nullable"
-        float longitude "nullable"
         string phone "nullable"
         string website "nullable"
         string image_url "nullable"
-        int price_level "1-4, nullable"
         decimal avg_rating "cached from reviews, nullable"
         int review_count "cached, default 0"
         timestamp created_at
@@ -50,7 +46,7 @@ erDiagram
     }
 
     REVIEW {
-        uuid id PK
+        id id PK
         uuid restaurant_id FK
         uuid user_id FK
         smallint rating "1-5, not null"
@@ -59,22 +55,3 @@ erDiagram
         timestamp created_at
         timestamp updated_at
     }
-
-    REVIEW_PHOTO {
-        uuid id PK
-        uuid review_id FK
-        string image_url "not null"
-        smallint sort_order "default 0"
-        timestamp created_at
-    }
-
-    %% CUISINE {
-    %%     uuid id PK
-    %%     string name UK "e.g. Thai, Italian"
-    %%     timestamp created_at
-    %% }
-
-    %% RESTAURANT_CUISINE {
-    %%     uuid restaurant_id PK_FK
-    %%     uuid cuisine_id PK_FK
-    %% }
