@@ -1,1 +1,1 @@
-export { reviewsRoute } from "./reviews.route";
+export { reviewRoute } from './reviews.route';

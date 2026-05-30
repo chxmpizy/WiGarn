@@ -3,7 +3,7 @@ import type { SelectRestaurant } from '../../../db/schema';
 
 export const createRestaurantBodySchema = z.object({
   name: z.string().min(1),
-  description: z.email().nullable(),
+  description: z.string().nullable(),
   address: z.string().min(1),
   city: z.string(),
   state: z.string(),
@@ -15,7 +15,7 @@ export const createRestaurantBodySchema = z.object({
 });
 export const updateRestaurantBodySchema = z.object({
   name: z.string().optional(),
-  description: z.email().nullable().optional(),
+  description: z.string().nullable().optional(),
   address: z.string().optional(),
   city: z.string().optional(),
   state: z.string().optional(),
@@ -26,7 +26,7 @@ export const updateRestaurantBodySchema = z.object({
   imageUrl: z.string().optional(),
 });
 export const restaurantIdParamsSchema = z.object({
-  id: z.number(),
+  id: z.coerce.number().int().positive(),
 });
 
 export type CreateRestaurantBody = z.infer<typeof createRestaurantBodySchema>;
