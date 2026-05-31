@@ -1,1 +1,3 @@
-/** Shared utilities (e.g. database client from @repo/db) */
+export { getBearerToken, signAccessToken, verifyAccessToken } from './jwt';
+export type { AuthJwtPayload } from './jwt';
+export { hashPassword, verifyPassword } from './password';

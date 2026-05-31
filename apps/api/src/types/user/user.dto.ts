@@ -9,7 +9,7 @@ export const createUserBodySchema = z.object({
   email: z.email(),
   password: z.string().min(8),
   role: userRoleSchema.optional(),
-  image_url: z.string(),
+  image_url: z.string().optional(),
 });
 
 export const updateUserBodySchema = z

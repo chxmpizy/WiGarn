@@ -2,14 +2,12 @@
 import { eq } from 'drizzle-orm';
 import { usersTable } from '../../../db/schema';
 import { db } from '../../../db/db';
+import { hashPassword } from '../../lib/password';
 import {
   type CreateUserBody,
   type UpdateUserBody,
   toPublicUser,
 } from '../../types/user/user.dto';
-
-const hashPassword = (password: string) =>
-  Bun.password.hash(password, { algorithm: 'bcrypt', cost: 10 });
 
 const isUniqueViolation = (error: unknown) =>
   error instanceof Error &&

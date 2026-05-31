@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Elysia } from 'elysia';
 import { registerRoutes } from './routes';
 import { db } from '../db/db';

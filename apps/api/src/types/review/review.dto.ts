@@ -16,17 +16,16 @@ export const toDbRating = (rating: ReviewRating) =>
   String(rating) as '1' | '2' | '3' | '4' | '5';
 
 export const createReviewBodySchema = z.object({
-  rest_id: z.number(),
-  user_id: z.string().min(1),
+  rest_id: z.number().int().positive(),
   rating: reviewRatingSchema,
-  review_des: z.string(),
+  review_des: z.string().min(1),
 });
 export const updateReviewBodySchema = z.object({
   rating: reviewRatingSchema.optional(),
   review_des: z.string().optional(),
 });
 export const reviewIdParamsSchema = z.object({
-  id: z.number(),
+  id: z.coerce.number().int().positive(),
 });
 
 export type CreateReviewBody = z.infer<typeof createReviewBodySchema>;

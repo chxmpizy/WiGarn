@@ -1,1 +1,1 @@
-/** Custom Elysia middleware (auth, request logging, error shaping) */
+export { requireAuth } from './auth.middleware';

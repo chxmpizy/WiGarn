@@ -1,29 +1,22 @@
 import { Elysia } from 'elysia';
+import { requireAuth } from '../../middleware/auth.middleware';
+import { reviewService } from '../../services/reviews/reviews.service';
 import {
   createReviewBodySchema,
   reviewIdParamsSchema,
   updateReviewBodySchema,
 } from '../../types/review/review.dto';
-import { reviewService } from '../../services/reviews/reviews.service';
 
 const isNotFound = (
   result: unknown,
-): result is { message: 'Restaurant not found' } =>
+): result is { message: 'Review not found' } =>
   typeof result === 'object' &&
   result !== null &&
   'message' in result &&
-  (result as { message: string }).message === 'Restaurant not found';
+  (result as { message: string }).message === 'Review not found';
 
-const isConflict = (
-  result: unknown,
-): result is { message: 'Restaurant already exists' } =>
-  typeof result === 'object' &&
-  result !== null &&
-  'message' in result &&
-  (result as { message: string }).message === 'Restaurant already exists';
-
-/** Restaurant REST routes */
-export const reviewRoute = new Elysia({ prefix: '/restaurants' })
+/** Review REST routes */
+export const reviewRoute = new Elysia({ prefix: '/reviews' })
   .get('/', () => reviewService.getAllReviews())
   .get(
     '/:id',
@@ -36,14 +29,11 @@ export const reviewRoute = new Elysia({ prefix: '/restaurants' })
     },
     { params: reviewIdParamsSchema },
   )
+  .use(requireAuth)
   .post(
     '/',
-    async ({ body, set }) => {
-      const result = await reviewService.createReview(body);
-      if (isConflict(result)) {
-        set.status = 409;
-        return result;
-      }
+    async ({ body, auth, set }) => {
+      const result = await reviewService.createReview(body, auth!.sub);
       set.status = 201;
       return result;
     },
@@ -55,10 +45,6 @@ export const reviewRoute = new Elysia({ prefix: '/restaurants' })
       const result = await reviewService.updateReview(body, params.id);
       if (isNotFound(result)) {
         set.status = 404;
-        return result;
-      }
-      if (isConflict(result)) {
-        set.status = 409;
         return result;
       }
       return result;

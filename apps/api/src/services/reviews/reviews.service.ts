@@ -8,9 +8,9 @@ import {
   toPublicReview,
 } from '../../types/review/review.dto';
 
-const toInsertValues = (body: CreateReviewBody) => ({
+const toInsertValues = (body: CreateReviewBody, userId: string) => ({
   rest_id: body.rest_id,
-  user_id: body.user_id,
+  user_id: userId,
   review_des: body.review_des,
   rating: toDbRating(body.rating),
 });
@@ -36,8 +36,11 @@ export const reviewService = {
     return toPublicReview(row);
   },
 
-  async createReview(body: CreateReviewBody) {
-    const [row] = await db.insert(review).values(toInsertValues(body)).returning();
+  async createReview(body: CreateReviewBody, userId: string) {
+    const [row] = await db
+      .insert(review)
+      .values(toInsertValues(body, userId))
+      .returning();
     return toPublicReview(row);
   },
 
