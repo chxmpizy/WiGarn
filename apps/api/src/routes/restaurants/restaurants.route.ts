@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia';
-import { restaurantService } from '../../services/restaurants/restaurants.service';
+import { restaurantService } from '@/src/services/restaurants/restaurants.service';
 import {
   createRestaurantBodySchema,
   restaurantIdParamsSchema,

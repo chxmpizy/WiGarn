@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia';
-import { requireAuth } from '../../middleware/auth.middleware';
-import { authService } from '../../services/auth/auth.service';
-import { loginBodySchema, registerBodySchema } from '../../types/auth/auth.dto';
+import { requireAuth } from '@/src/middleware/auth.middleware';
+import { authService } from '@/src/services/auth/auth.service';
+import { loginBodySchema, registerBodySchema } from '@/src/types/auth/auth.dto';
 
 const isUnauthorized = (
   result: unknown,

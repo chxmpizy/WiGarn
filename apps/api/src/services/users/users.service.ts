@@ -1,7 +1,7 @@
 /** User business logic — use @repo/db when packages/db is available */
 import { eq } from 'drizzle-orm';
-import { usersTable } from '../../../db/schema';
-import { db } from '../../../db/db';
+import { usersTable } from '@db/schema';
+import { db } from '@db/db';
 import { hashPassword } from '../../lib/password';
 import {
   type CreateUserBody,

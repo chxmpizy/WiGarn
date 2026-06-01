@@ -1,10 +1,10 @@
 import { Elysia } from 'elysia';
-import { userServices } from '../../services/users/users.service';
+import { userServices } from '@/src/services/users/users.service';
 import {
   createUserBodySchema,
   updateUserBodySchema,
   userUuidParamsSchema,
-} from '../../types/user/user.dto';
+} from '@/src/types/user/user.dto';
 
 const isNotFound = (result: unknown): result is { message: 'User not found' } =>
   typeof result === 'object' &&

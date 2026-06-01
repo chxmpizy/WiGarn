@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { usersTable } from '../../../db/schema';
-import { db } from '../../../db/db';
+import { usersTable } from '@db/schema';
+import { db } from '@db/db';
 import { signAccessToken } from '../../lib/jwt';
 import { hashPassword, verifyPassword } from '../../lib/password';
 import type { LoginBody, RegisterBody } from '../../types/auth/auth.dto';

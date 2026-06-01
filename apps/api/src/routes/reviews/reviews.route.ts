@@ -1,11 +1,11 @@
 import { Elysia } from 'elysia';
-import { requireAuth } from '../../middleware/auth.middleware';
-import { reviewService } from '../../services/reviews/reviews.service';
+import { requireAuth } from '@/src/middleware/auth.middleware';
+import { reviewService } from '@/src/services/reviews/reviews.service';
 import {
   createReviewBodySchema,
   reviewIdParamsSchema,
   updateReviewBodySchema,
-} from '../../types/review/review.dto';
+} from '@/src/types/review/review.dto';
 
 const isNotFound = (
   result: unknown,

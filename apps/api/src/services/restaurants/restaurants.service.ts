@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { restaurantsTable } from '../../../db/schema';
-import { db } from '../../../db/db';
+import { restaurantsTable } from '@db/schema';
+import { db } from '@db/db';
 import {
   type CreateRestaurantBody,
   type UpdateRestaurantBody,

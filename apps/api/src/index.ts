@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Elysia } from 'elysia';
 import { registerRoutes } from './routes';
-import { db } from '../db/db';
+import { db } from '@db/db';
 
 export const createApp = () =>
   new Elysia({ name: 'wigarn-api' })

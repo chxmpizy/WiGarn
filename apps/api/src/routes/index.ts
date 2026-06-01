@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia';
-import { authRoute } from './auth';
+import { authRoute } from '@/src/routes/auth/auth.route';
 import { healthRoute } from './health.route';
 import { restaurantsRoute } from './restaurants/restaurants.route';
 import { reviewRoute } from './reviews';
