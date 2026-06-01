@@ -1,0 +1,20 @@
+{
+  "name": "@wigarn/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --format cjs",
+    "migrate:dev": "drizzle-kit migrate",
+    "generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.0.0"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.0.0",
+    "pg": "^8.0.0"
+  }
+}
