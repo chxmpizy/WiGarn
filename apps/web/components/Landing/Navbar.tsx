@@ -10,7 +10,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@ui/avatar';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-import { Search } from 'lucide-react';
+import { Search, Utensils } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+} from '@ui/dropdown-menu';
 
 interface UserProfile {
   name: string;
@@ -47,54 +55,83 @@ const Navbar = () => {
     fetchUserProfile();
   }, [isLoggedIn]);
   return (
-    <div className="flex items-center justify-between gap-4 p-4">
-      <div className="flex items-center gap-3">
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/Wi_Garn.jpg" alt="Logo" width={40} height={40} />
-          <span className="font-semibold">WiGarn</span>
-        </Link>
-      </div>
-
-      <div className="flex w-full max-w-xl items-center gap-2 rounded-xl border">
-        {/* <Search className="text-muted-foreground ml-2" width={20} height={20} /> */}
-        <Input
-          icon={
+    <div className="border-accent-foreground/20 fixed z-99 w-full border-b backdrop-blur-md">
+      <div className="flex items-center justify-between gap-4 px-10 py-4">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="bg-primary text-primary-foreground grid h-8 w-8 place-items-center rounded-lg">
+              <Utensils size={18} />
+            </span>
+            <span className="font-semibold">WiGarn</span>
+          </Link>
+        </div>
+        {isLoggedIn && (
+          <div className="border-accent-foreground bg-accent flex w-full max-w-2xl items-center gap-1 rounded-full border">
             <Search
-              className="text-muted-foreground mx-2"
+              className="text-muted-foreground ml-2"
               width={20}
               height={20}
             />
-          }
-          className="w-full rounded-full border-none outline-none focus:ring-0"
-          placeholder="Search restaurants, cuisines..."
-        />
-      </div>
-      <div>
-        {isLoggedIn ? (
-          <Avatar>
-            {userProfile?.image_url && (
-              <AvatarImage src={userProfile?.image_url} alt="User Avatar" />
-            )}
-            <AvatarFallback>
-              {userProfile?.name.charAt(0).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
-        ) : (
-          <div>
-            <Button
-              className="cursor-pointer"
-              onClick={() => router.push('/auth/signin')}
-            >
-              Login
-            </Button>
-            <Button
-              className="cursor-pointer"
-              onClick={() => router.push('/auth/signup')}
-            >
-              Sign Up
-            </Button>
+
+            <Input
+              className="h-10 w-full border-none outline-none focus:ring-0"
+              placeholder="Search restaurants, cuisines..."
+            />
           </div>
         )}
+        <div>
+          {isLoggedIn ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar
+                  className="bg-secondary text-muted-foreground cursor-pointer px-4 py-2 font-medium"
+                  onClick={() => router.push('/profile')}
+                >
+                  {userProfile?.image_url && (
+                    <AvatarImage
+                      src={userProfile?.image_url}
+                      alt="User Avatar"
+                    />
+                  )}
+                  <AvatarFallback className="text-lg">
+                    {userProfile?.name.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white">
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Billing</DropdownMenuItem>
+                </DropdownMenuGroup>
+                {/* <DropdownMenuSeparator /> */}
+                <DropdownMenuLabel>
+                  <Button
+                    className="cursor-pointer bg-transparent text-red-500"
+                    onClick={() => logout()}
+                  >
+                    Log out
+                  </Button>
+                </DropdownMenuLabel>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <div className="flex gap-4">
+              <Button
+                className="ring-primary cursor-pointer ring-1"
+                onClick={() => router.push('/auth/signin')}
+              >
+                Sign In
+              </Button>
+              <Button
+                className="text-primary ring-primary cursor-pointer bg-transparent ring-1"
+                onClick={() => router.push('/auth/signup')}
+              >
+                Sign Up
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
