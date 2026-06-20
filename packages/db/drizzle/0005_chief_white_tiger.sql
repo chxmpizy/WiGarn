@@ -1,0 +1,2 @@
+ALTER TABLE "review" ALTER COLUMN "rating" SET DATA TYPE integer;--> statement-breakpoint
+ALTER TABLE "review" ADD CONSTRAINT "rating_range_check" CHECK ("review"."rating" >= 1 AND "review"."rating" <= 5);

@@ -22,6 +22,34 @@
       "when": 1780079149949,
       "tag": "0002_real_arclight",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1780547080412,
+      "tag": "0003_flowery_professor_monster",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1780565907885,
+      "tag": "0004_aspiring_morg",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1780566558298,
+      "tag": "0005_chief_white_tiger",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1781956505077,
+      "tag": "0006_noisy_daredevil",
+      "breakpoints": true
     }
   ]
 }

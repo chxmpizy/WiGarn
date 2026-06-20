@@ -7,14 +7,18 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "bun build src/index.ts --outdir dist --format cjs",
+    "check-types": "tsc --noEmit",
     "migrate:dev": "drizzle-kit migrate",
-    "generate": "drizzle-kit generate"
+    "generate": "drizzle-kit generate",
+    "db:seed": "bun src/seeds.ts"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.0.0"
+    "@faker-js/faker": "^10.4.0",
+    "drizzle-kit": "^0.31.10"
   },
   "dependencies": {
-    "drizzle-orm": "^0.0.0",
+    "drizzle-orm": "^0.45.2",
+    "@neondatabase/serverless": "^1.1.0",
     "pg": "^8.0.0"
   }
 }
