@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { SelectReview } from '../../../db/schema';
+import type { SelectReview } from '@db/schema';
 
 export const reviewRatingSchema = z.union([
   z.literal(1),
@@ -39,6 +39,7 @@ export const toPublicReview = (row: SelectReview): Review => ({
   rating: Number(row.rating) as ReviewRating,
   createdAt: row.createdAt,
   updatedAt: row.updatedAt,
+  
 });
 
 export interface Review {

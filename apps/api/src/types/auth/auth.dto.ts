@@ -5,7 +5,10 @@ export const registerBodySchema = z.object({
   name: z.string().min(1),
   email: z.email(),
   password: z.string().min(8),
-  image_url: z.string(),
+  handle: z.string().min(1).max(64).optional(),
+  location: z.string().max(255).optional(),
+  bio: z.string().max(200).optional(),
+  image_url: z.string().optional(),
 });
 
 export const loginBodySchema = z.object({

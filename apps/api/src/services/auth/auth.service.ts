@@ -15,13 +15,12 @@ const issueSession = async (user: typeof usersTable.$inferSelect) => ({
   accessToken: await signAccessToken({
     sub: user.uuid,
     email: user.email,
-    role: user.role,
   }),
   user: toPublicUser(user),
 });
 
 export const authService = {
-  async register(body: RegisterBody) {
+  async signup(body: RegisterBody) {
     const passwordHash = await hashPassword(body.password);
 
     try {
@@ -30,9 +29,12 @@ export const authService = {
         .values({
           name: body.name,
           email: body.email,
+          handle: body.handle,
+          location: body.location,
+          bio: body.bio,
           passwordHash,
-          role: 'user',
           image_url: body.image_url,
+          updatedAt: new Date(),
         })
         .returning();
 
@@ -45,7 +47,7 @@ export const authService = {
     }
   },
 
-  async login(body: LoginBody) {
+  async signin(body: LoginBody) {
     const [row] = await db
       .select()
       .from(usersTable)

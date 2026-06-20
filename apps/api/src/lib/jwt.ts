@@ -3,7 +3,6 @@ import { SignJWT, jwtVerify } from 'jose';
 export interface AuthJwtPayload {
   sub: string;
   email: string;
-  role: string;
 }
 
 const getSecretKey = () => {
@@ -15,7 +14,7 @@ const getSecretKey = () => {
 };
 
 export const signAccessToken = async (payload: AuthJwtPayload) =>
-  new SignJWT({ email: payload.email, role: payload.role })
+  new SignJWT({ email: payload.email })
     .setProtectedHeader({ alg: 'HS256' })
     .setSubject(payload.sub)
     .setIssuedAt()
@@ -34,7 +33,6 @@ export const verifyAccessToken = async (
   return {
     sub: payload.sub,
     email: payload.email,
-    role: typeof payload.role === 'string' ? payload.role : 'user',
   };
 };
 

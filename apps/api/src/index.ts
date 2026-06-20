@@ -11,7 +11,9 @@ export const createApp = () =>
     }))
     .use(registerRoutes);
 
-const app = createApp();
-app.listen(process.env.API_PORT || 3001, () => {
-  console.log(`Server is running on port ${process.env.API_PORT || 3001}`);
-});
+if (import.meta.main) {
+  const app = createApp();
+  app.listen(process.env.API_PORT || 3001, () => {
+    console.log(`Server is running on port ${process.env.API_PORT || 3001}`);
+  });
+}

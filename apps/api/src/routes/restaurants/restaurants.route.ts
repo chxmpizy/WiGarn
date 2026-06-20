@@ -28,7 +28,8 @@ export const restaurantsRoute = new Elysia({ prefix: '/restaurants' })
   .get(
     '/:id',
     async ({ params, set }) => {
-      const result = await restaurantService.getRestaurantById(params.id);
+      const restaurantId = Number(params.id);
+      const result = await restaurantService.getRestaurantById(restaurantId);
       if (isNotFound(result)) {
         set.status = 404;
       }

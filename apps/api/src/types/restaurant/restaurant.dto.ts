@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { SelectRestaurant } from '../../../db/schema';
+import type { SelectRestaurant } from '@db/schema';
 
 export const createRestaurantBodySchema = z.object({
   name: z.string().min(1),
@@ -11,6 +11,7 @@ export const createRestaurantBodySchema = z.object({
   country: z.string(),
   phone: z.string(),
   website: z.string().nullable(),
+  category: z.string(),
   imageUrl: z.string(),
 });
 export const updateRestaurantBodySchema = z.object({
@@ -22,6 +23,7 @@ export const updateRestaurantBodySchema = z.object({
   postalCode: z.string().optional(),
   country: z.string().optional(),
   phone: z.string().optional(),
+  category: z.string().optional(),
   website: z.string().nullable().optional(),
   imageUrl: z.string().optional(),
 });
@@ -44,6 +46,7 @@ export interface Restaurant {
   phone: string | null;
   website: string | null;
   image_url: string | null;
+  category: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -59,6 +62,7 @@ export const toPublicRestaurant = (row: SelectRestaurant): Restaurant => ({
   country: row.country,
   phone: row.phone,
   website: row.website,
+  category: row.category,
   image_url: row.image_url,
   createdAt: row.createdAt,
   updatedAt: row.updatedAt,

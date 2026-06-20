@@ -18,10 +18,18 @@ const isNotFound = (
 /** Review REST routes */
 export const reviewRoute = new Elysia({ prefix: '/reviews' })
   .get('/', () => reviewService.getAllReviews())
+  .get('/restReview/:restaurantId', async ({ params }) => {
+    const restaurantId = Number(params.restaurantId);
+    return reviewService.getReviewByRestaurantId(restaurantId);
+  })
+  .get('/user/:uuid', ({ params }) =>
+    reviewService.getReviewsByUserId(params.uuid),
+  )
   .get(
     '/:id',
     async ({ params, set }) => {
-      const result = await reviewService.getReviewById(params.id);
+      const reviewId = Number(params.id);
+      const result = await reviewService.getReviewById(reviewId);
       if (isNotFound(result)) {
         set.status = 404;
       }
@@ -33,7 +41,12 @@ export const reviewRoute = new Elysia({ prefix: '/reviews' })
   .post(
     '/',
     async ({ body, auth, set }) => {
-      const result = await reviewService.createReview(body, auth!.sub);
+      if (!auth) {
+        set.status = 401;
+        return { message: 'Unauthorized' };
+      }
+
+      const result = await reviewService.createReview(body, auth.sub);
       set.status = 201;
       return result;
     },

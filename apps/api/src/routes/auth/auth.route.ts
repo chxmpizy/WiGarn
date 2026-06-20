@@ -28,9 +28,9 @@ const isNotFound = (result: unknown): result is { message: 'User not found' } =>
 /** Auth routes: register, login, current user profile */
 export const authRoute = new Elysia({ prefix: '/auth' })
   .post(
-    '/register',
+    '/signup',
     async ({ body, set }) => {
-      const result = await authService.register(body);
+      const result = await authService.signup(body);
       if (isConflict(result)) {
         set.status = 409;
         return result;
@@ -41,9 +41,20 @@ export const authRoute = new Elysia({ prefix: '/auth' })
     { body: registerBodySchema },
   )
   .post(
-    '/login',
-    async ({ body, set }) => {
-      const result = await authService.login(body);
+    '/signin',
+    async ({ body, cookie: { accessToken }, set }) => {
+      const result = await authService.signin(body);
+      const token = 'accessToken' in result ? result.accessToken : null;
+
+      if (token) {
+        accessToken.set({
+          value: token,
+          httpOnly: true,
+          path: '/',
+          maxAge: 7 * 24 * 60 * 60,
+        });
+      }
+
       if (isUnauthorized(result)) {
         set.status = 401;
       }
@@ -53,7 +64,12 @@ export const authRoute = new Elysia({ prefix: '/auth' })
   )
   .use(requireAuth)
   .get('/me', async ({ auth, set }) => {
-    const result = await authService.getProfile(auth!.sub);
+    if (!auth) {
+      set.status = 401;
+      return { message: 'Unauthorized' };
+    }
+
+    const result = await authService.getProfile(auth.sub);
     if (isNotFound(result)) {
       set.status = 404;
     }

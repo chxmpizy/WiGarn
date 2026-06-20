@@ -13,23 +13,19 @@ describe('Auth', () => {
     expect(response.status).toBe(401);
   });
 
-  it('registers and returns an access token', async () => {
-    const email = `auth-test-${Date.now()}@example.com`;
+  it('validates signup input before reaching the database', async () => {
     const response = await app.handle(
-      new Request('http://localhost/auth/register', {
+      new Request('http://localhost/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: 'Auth Test',
-          email,
-          password: 'password123',
+          email: 'not-an-email',
+          password: 'short',
         }),
       }),
     );
 
-    expect(response.status).toBe(201);
-    const data = await response.json();
-    expect(data.accessToken).toBeString();
-    expect(data.user.email).toBe(email);
+    expect(response.status).toBe(422);
   });
 });

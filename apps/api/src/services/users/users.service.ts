@@ -39,9 +39,12 @@ export const userServices = {
         .values({
           name: body.name,
           email: body.email,
+          handle: body.handle,
+          location: body.location,
+          bio: body.bio,
           passwordHash,
-          role: body.role ?? 'user',
           image_url: body.image_url,
+          updatedAt: new Date(),
         })
         .returning();
       return toPublicUser(row);
@@ -63,9 +66,12 @@ export const userServices = {
         .set({
           ...(body.name !== undefined && { name: body.name }),
           ...(body.email !== undefined && { email: body.email }),
-          ...(body.role !== undefined && { role: body.role }),
+          ...(body.handle !== undefined && { handle: body.handle }),
+          ...(body.location !== undefined && { location: body.location }),
+          ...(body.bio !== undefined && { bio: body.bio }),
           ...(body.image_url !== undefined && { image_url: body.image_url }),
           ...(passwordHash !== undefined && { passwordHash }),
+          updatedAt: new Date(),
         })
         .where(eq(usersTable.uuid, uuid))
         .returning();

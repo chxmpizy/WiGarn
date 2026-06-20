@@ -22,7 +22,9 @@ const toInsertValues = (body: CreateRestaurantBody) => ({
   country: body.country,
   phone: body.phone,
   website: body.website,
+  category: body.category,
   image_url: body.imageUrl,
+  updatedAt: new Date(),
 });
 
 const toUpdateValues = (body: UpdateRestaurantBody) => ({
