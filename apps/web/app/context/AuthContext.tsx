@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
   ReactNode,
 } from 'react';
@@ -25,12 +24,9 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = Cookies.get('accessToken');
-    setIsLoggedIn(!!token);
-  }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () => !!Cookies.get('accessToken'),
+  );
 
   const login = (token: string) => {
     Cookies.set('accessToken', token, { expires: 7, sameSite: 'lax' });

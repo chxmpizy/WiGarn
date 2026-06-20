@@ -19,7 +19,7 @@ const formSchema = z.object({
   name: z.string().min(2, 'Enter your name'),
   email: z.string().min(5, 'Enter your email.'),
   password: z.string().min(8, 'Enter your password.'),
-  image_url: z.string(),
+  image_url: z.string().optional(),
 });
 
 const SignUpForm = () => {
@@ -30,8 +30,10 @@ const SignUpForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
+      image_url: '',
     },
   });
 
@@ -39,7 +41,10 @@ const SignUpForm = () => {
     try {
       const result = await axios.post(
         `${process.env.NEXT_PUBLIC_API_DEV_URL}/auth/signup`,
-        data,
+        {
+          ...data,
+          image_url: data.image_url || undefined,
+        },
       );
       if (result.data.accessToken) {
         login(result.data.accessToken);
@@ -205,8 +210,8 @@ const SignUpForm = () => {
                     <Input
                       {...field}
                       id="image_url"
-                      type="file"
-                      placeholder="example.jpg"
+                      type="url"
+                      placeholder="https://example.com/avatar.jpg"
                       className="focus-visible:ring-primary/20 h-10 w-full rounded-lg border-neutral-200 focus-visible:ring-2 dark:border-zinc-800"
                       aria-invalid={fieldState.invalid}
                     />

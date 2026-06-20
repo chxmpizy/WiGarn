@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // 💡 ปรับการตั้งค่าอนุมัติโดเมน Unsplash ให้เป็นฟอร์แมตนี้ครับ
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**', // อนุญาตให้เข้าถึงพาร์ทรูปภาพย่อยทั้งหมดข้างใน
+      },
+    ],
+  },
 };
-
 export default nextConfig;

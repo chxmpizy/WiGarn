@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@ui/button';
 import Image from 'next/image';
-import heroImage from '../../public/heroImage.jpeg';
+import heroImage from '../public/heroImage.jpeg';
 import { useRouter } from 'next/navigation';
 
 const HeroSection = () => {
@@ -21,10 +21,10 @@ const HeroSection = () => {
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button
-              className="cursor-pointer"
+              className="cursor-pointer rounded-2xl"
               onClick={() => route.push('/auth/signin')}
             >
-              Let's Review!!
+              Let&apos;s Review!!
             </Button>
           </div>
         </div>

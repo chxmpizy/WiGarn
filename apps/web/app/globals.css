@@ -18,7 +18,6 @@
   --border: oklch(0.91 0.012 130);
   --input: oklch(0.91 0.012 130);
   --ring: oklch(0.68 0.13 155);
-  --radius: 0.75rem (12px);
 
   /* Design Tokens */
   --card: oklch(0.99 0.003 120);
