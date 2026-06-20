@@ -1,5 +1,12 @@
 version: '3.8'
 services:
+  #   web:
+  #     build:
+  #       context: .
+  #       dockerfile: apps/web/Dockerfile
+  #     ports : '3000:3000'
+  #     env_file:
+  #       - ./apps/web/.env
   api:
     build:
       context: .
@@ -13,7 +20,7 @@ services:
     env_file:
       - ./apps/api/.env
   db:
-    image: postgres:16
+    image: postgres:17
     restart: always
     environment:
       POSTGRES_USER: postgres
